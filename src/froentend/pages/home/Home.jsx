@@ -3,8 +3,7 @@ import { Link } from "react-router-dom";
 function Home() {
 	return (
 		<div>
-			Home
-			<Link to="/products">Products</Link>
+			<Link to="/products">Click here to See the Preview of Products Page</Link>
 		</div>
 	);
 }
