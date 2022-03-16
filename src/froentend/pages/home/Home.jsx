@@ -1,9 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { Navbar } from "../../components";
 function Home() {
 	return (
 		<div>
-			<Link to="/products">Click here to See the Preview of Products Page</Link>
+			<Navbar />
 		</div>
 	);
 }
