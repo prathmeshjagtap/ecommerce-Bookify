@@ -1,0 +1,28 @@
+.badge_count {
+	position: absolute;
+	background-color: var(--secondary-color);
+	color: var(--background-color);
+	border-radius: 50%;
+	min-height: 1rem;
+	min-width: 1rem;
+	padding: var(--padding-px-m);
+	bottom: 1.4rem;
+	left: 1.4rem;
+	font-size: 1rem;
+	text-align: center;
+}
+.Navigation__icon {
+	font-size: 1.5rem;
+	color: var(--text-color);
+}
+.navigation__component {
+	background-color: var(--background-color);
+	box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+	position: fixed;
+	top: 0;
+	left: 0;
+}
+.nav__search,
+.search__mobile {
+	border: 1px solid var(--text-color);
+}

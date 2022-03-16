@@ -1,0 +1,12 @@
+.card__button-ecom:hover {
+	background-color: var(--secondary-color);
+}
+.static__rating {
+	background-color: var(--background-color);
+}
+.static__rating p {
+	color: var(--text-color);
+}
+.card__dismiss {
+	color: var(--text-color);
+}
