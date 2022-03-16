@@ -10,28 +10,28 @@ function SignupForm() {
 					<form action="./home.html" className="form">
 						<h2 className="form__name">Signup</h2>
 						<div className="input__box">
-							<label>Email address </label>
+							<label htmlFor="Email">Email address </label>
 							<input id="Email" className="input" required />
 							<p className="input__message">Wrong Email</p>
 						</div>
 						<div className="input__box">
-							<label>Username </label>
+							<label htmlFor="Username">Username </label>
 							<input id="Username" className="input" required />
 						</div>
 						<div className="input__box">
-							<label>Password</label>
+							<label htmlFor="Password">Password</label>
 							<input id="Password" className="input" required />
 							<p className="input__message">Wrong Password</p>
 						</div>
 						<div className="input__box">
-							<label>Confirm Password </label>
+							<label htmlFor="ConfirmPassword">Confirm Password </label>
 							<input id="ConfirmPassword" className="input" required />
 							<p className="input__message">Password does not match</p>
 						</div>
 						<div className="input__box input__TandC">
 							<div>
-								<input type="checkbox" />
-								<label>I accept all Terms and Conditions</label>
+								<input type="checkbox" id="TandC" />
+								<label htmlFor="TandC">I accept all Terms and Conditions</label>
 							</div>
 						</div>
 						<button type="submit" className="btn btn-primary form-btn">

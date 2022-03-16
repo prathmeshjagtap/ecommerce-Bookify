@@ -10,20 +10,20 @@ function Loginform() {
 					<form className="form">
 						<h2 className="form__name">Login</h2>
 						<div className="input__box">
-							<label>Email address </label>
+							<label htmlFor="Email">Email address </label>
 							<input id="Email" className="input" />
 							<p className="input__message">Wrong Email</p>
 						</div>
 						<div className="input__box">
-							<label>Password</label>
+							<label htmlFor="Password">Password</label>
 							<input id="Password" className="input" />
 							<p className="input__message">Wrong Password</p>
 						</div>
 
 						<div className="input__box input__TandC">
 							<div>
-								<input type="checkbox" />
-								<label>Remember me</label>
+								<input type="checkbox" id="remberMe" />
+								<label htmlFor="remberMe">Remember me</label>
 							</div>
 							<Link to="/"> Forgot Password </Link>
 						</div>
