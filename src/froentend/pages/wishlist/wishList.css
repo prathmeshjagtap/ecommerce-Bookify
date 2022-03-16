@@ -1,0 +1,15 @@
+.wishlist__container {
+	padding: var(--padding-rem-l);
+	margin-top: var(--margin-rem-m);
+}
+.wishlist__name {
+	margin-bottom: var(--margin-rem-m);
+	text-align: center;
+}
+
+.wishlist {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, 14rem);
+	gap: var(--gap-sm);
+	justify-content: center;
+}
