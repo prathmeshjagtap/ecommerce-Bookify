@@ -7,9 +7,8 @@ const sortbyPriceFunction = (state, data) => {
 		return [...data].sort((firstItem, secondItem) => {
 			return secondItem.price - firstItem.price;
 		});
-	} else {
-		return data;
 	}
+	return data;
 };
 
 const filterByPrice = (state, data) => {
@@ -38,9 +37,8 @@ const filterByCategory = (state, data) => {
 const filterByRatings = (state, data) => {
 	if (state.ratings) {
 		return data.filter((item) => Number(item.rating) >= Number(state.ratings));
-	} else {
-		return data;
 	}
+	return data;
 };
 
 const ComposeFunction =
