@@ -7,7 +7,7 @@ import {
 	Home,
 	Login,
 	Signup,
-} from "./froentend/pages";
+} from "./frontend/pages";
 import Mockman from "mockman-js";
 function App() {
 	return (
