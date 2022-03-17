@@ -22,6 +22,9 @@
 	align-items: center;
 	justify-content: space-between;
 }
+.aside__filter h3 {
+	cursor: pointer;
+}
 .filter__heading {
 	margin: calc(2 * var(--margin-px-l)) 0;
 	font-size: 1.4rem;
