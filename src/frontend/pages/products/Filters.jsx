@@ -61,7 +61,7 @@ function Filters() {
 									})
 								}
 							/>
-							<label>{category}</label>
+							<label htmlFor={category}>{category}</label>
 						</li>
 					))}
 				</ul>
@@ -81,7 +81,7 @@ function Filters() {
 									})
 								}
 							/>
-							<label>{rating} Stars & above</label>
+							<label htmlFor={rating}>{rating} Stars & above</label>
 						</li>
 					))}
 				</ul>
@@ -100,7 +100,7 @@ function Filters() {
 								})
 							}
 						/>
-						<label>Price- Low to High</label>
+						<label htmlFor="lowtoHigh">Price- Low to High</label>
 					</li>
 					<li>
 						<input
@@ -115,7 +115,7 @@ function Filters() {
 								})
 							}
 						/>
-						<label>Price- High to Low</label>
+						<label htmlFor="hightoLow">Price- High to Low</label>
 					</li>
 				</ul>
 			</aside>
