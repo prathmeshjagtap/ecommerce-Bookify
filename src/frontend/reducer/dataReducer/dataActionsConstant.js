@@ -1,0 +1,5 @@
+export const dataActions = {
+	GET_PRODUCTS: "GET_PRODUCTS",
+	GET_CATEGORIES: "GET_CATEGORIES",
+	ERROR: "ERROR",
+};

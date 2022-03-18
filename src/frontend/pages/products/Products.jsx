@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Navbar, ProductCard } from "../../components";
 import { Filters } from "./Filters";
-import { useFilter } from "../../contexts";
+import { useFilter, useDataContext } from "../../contexts";
 import {
 	ComposeFunction,
 	sortbyPriceFunction,
@@ -14,28 +14,15 @@ import "./products.css";
 const axios = require("axios").default;
 
 function Products() {
-	const [products, setProducts] = useState([]);
 	const { state } = useFilter();
+	const { dataState } = useDataContext();
 
-	useEffect(() => {
-		(async () => {
-			try {
-				const response = await axios.get("/api/products");
-				if (response.status === 200) {
-					setProducts([...response.data.products]);
-				}
-			} catch (error) {
-				console.log(error);
-			}
-		})();
-	}, []);
-
-	const Products = ComposeFunction(
+	const products = ComposeFunction(
 		sortbyPriceFunction,
 		filterByPrice,
 		filterByRatings,
 		filterByCategory
-	)(state, products);
+	)(state, dataState.products);
 	return (
 		<div>
 			<Navbar />
@@ -43,11 +30,11 @@ function Products() {
 				<Filters />
 				<main className="main">
 					<h1 className="Product__categoery__name">
-						Showing All {Products && Products.length} Products
+						Showing All {products && products.length} Products
 					</h1>
 					<div className="products">
-						{Products &&
-							Products.map((product) => (
+						{products &&
+							products.map((product) => (
 								<ProductCard key={product.id} product={product} />
 							))}
 					</div>
