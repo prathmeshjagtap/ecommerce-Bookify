@@ -2,8 +2,23 @@ import React from "react";
 import "./navbar.css";
 import Logo from "../../assets/Logo.svg";
 import { Link } from "react-router-dom";
+import { useAuthContext } from "../../contexts";
+import { authActions } from "../../reducer";
 
 function Navbar() {
+	const { authState, authDispatch } = useAuthContext();
+	const { token } = authState;
+
+	const logoutHandler = (e) => {
+		console.log("Ok");
+		e.preventDefault();
+		localStorage.removeItem("token");
+		authDispatch({
+			type: authActions.TOKEN,
+			payload: null,
+		});
+	};
+
 	return (
 		<div>
 			<nav className="navigation__component">
@@ -21,14 +36,19 @@ function Navbar() {
 
 					<ul className="nav__right">
 						<Link to="/Login">
-							<button className="btn btn-primary">Login</button>
+							<button className="btn btn-primary" onClick={logoutHandler}>
+								{token ? "Logout" : "Login"}
+							</button>
 						</Link>
 
-						<Link to="/WishList" className="badge__container">
+						<Link
+							to={token ? "/WishList" : "/login"}
+							className="badge__container"
+						>
 							<i className="far fa-heart Navigation__icon "></i>
 							<div className="badge_count">10</div>
 						</Link>
-						<Link to="/Cart" className="badge__container">
+						<Link to={token ? "/Cart" : "/login"} className="badge__container">
 							<i className="fas fa-shopping-cart Navigation__icon "></i>
 							<div className="badge_count">0</div>
 						</Link>
