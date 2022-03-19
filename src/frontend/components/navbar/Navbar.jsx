@@ -3,10 +3,21 @@ import "./navbar.css";
 import Logo from "../../assets/Logo.svg";
 import { Link } from "react-router-dom";
 import { useAuthContext } from "../../contexts";
+import { authActions } from "../../reducer";
 
 function Navbar() {
-	const { authState } = useAuthContext();
+	const { authState, authDispatch } = useAuthContext();
 	const { token } = authState;
+
+	const logoutHandler = (e) => {
+		console.log("Ok");
+		e.preventDefault();
+		localStorage.removeItem("token");
+		authDispatch({
+			type: authActions.TOKEN,
+			payload: null,
+		});
+	};
 
 	return (
 		<div>
@@ -25,7 +36,7 @@ function Navbar() {
 
 					<ul className="nav__right">
 						<Link to="/Login">
-							<button className="btn btn-primary">
+							<button className="btn btn-primary" onClick={logoutHandler}>
 								{token ? "Logout" : "Login"}
 							</button>
 						</Link>

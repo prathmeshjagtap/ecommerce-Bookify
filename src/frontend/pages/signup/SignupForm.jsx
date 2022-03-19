@@ -9,7 +9,8 @@ import { useNavigate } from "react-router-dom";
 function SignupForm() {
 	const { authState, authDispatch } = useAuthContext();
 	let navigate = useNavigate();
-	const { firstName, lastName, email, password, error } = authState;
+	const { user, error } = authState;
+	const { firstName, lastName, email, password } = user;
 
 	const signupHandler = async (e) => {
 		e.preventDefault();

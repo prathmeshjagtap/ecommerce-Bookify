@@ -9,7 +9,8 @@ import { useNavigate } from "react-router-dom";
 function Loginform() {
 	const { authState, authDispatch } = useAuthContext();
 	let navigate = useNavigate();
-	const { email, password, error } = authState;
+	const { user, error } = authState;
+	const { email, password } = user;
 
 	const loginHandler = async (e) => {
 		e.preventDefault();
