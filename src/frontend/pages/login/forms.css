@@ -22,8 +22,11 @@
 .input__message {
 	display: none;
 }
+.error__message {
+	color: var(--warning-red-color);
+	margin: 1rem;
+}
 .input__box {
-	margin: var(--margin);
 	margin: calc(2 * var(--margin-px-l));
 }
 .input__box label {
