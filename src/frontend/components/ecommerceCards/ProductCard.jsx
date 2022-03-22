@@ -1,11 +1,33 @@
 import React from "react";
 import "./ecommerceCard.css";
+import { useWishlistContext, useAuthContext } from "../../contexts";
+import { addToWishlist, deleteFromWishlist } from "../../helpers";
+import { useNavigate } from "react-router-dom";
 
 function ProductCard({ product }) {
+	const { wishList, setWishList } = useWishlistContext();
+	const { authState } = useAuthContext();
+	const { token } = authState;
+	const navigate = useNavigate();
+
 	return (
 		<div className="card__ecommerce">
 			<div className="card__badge">
-				<i className="far fa-heart fa-2x"></i>
+				{wishList.find((wishlistItem) => wishlistItem._id === product._id) ? (
+					<i
+						className="fas fa-heart fa-2x"
+						onClick={() => deleteFromWishlist(product._id, setWishList, token)}
+					></i>
+				) : (
+					<i
+						className="far fa-heart fa-2x"
+						onClick={() => {
+							token
+								? addToWishlist(product, setWishList, token)
+								: navigate("/login");
+						}}
+					></i>
+				)}
 			</div>
 			<img className="card__image" src={product.image} alt={product.title} />
 			<div className="card__titles">

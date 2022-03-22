@@ -8,6 +8,7 @@ import {
 	FilterProvider,
 	DataProvider,
 	AuthProvider,
+	WishListProvider,
 } from "./frontend/contexts";
 
 // Call make Server
@@ -19,7 +20,9 @@ ReactDOM.render(
 			<BrowserRouter>
 				<DataProvider>
 					<FilterProvider>
-						<App />
+						<WishListProvider>
+							<App />
+						</WishListProvider>
 					</FilterProvider>
 				</DataProvider>
 			</BrowserRouter>

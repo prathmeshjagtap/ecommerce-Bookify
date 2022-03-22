@@ -16,8 +16,8 @@ function Loginform() {
 		e.preventDefault();
 		try {
 			const response = await axios.post(`/api/auth/login`, {
-				email: email,
-				password: password,
+				email,
+				password,
 			});
 
 			localStorage.setItem("token", response.data.encodedToken);

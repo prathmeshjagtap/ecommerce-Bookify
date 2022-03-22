@@ -1,11 +1,20 @@
 import React from "react";
 import "./ecommerceCard.css";
+import { useAuthContext, useWishlistContext } from "../../contexts";
+import { deleteFromWishlist } from "../../helpers";
 
 function WishListCard({ product }) {
+	const { authState } = useAuthContext();
+	const { token } = authState;
+	const { setWishList } = useWishlistContext();
+
 	return (
 		<div className="card__ecommerce">
 			<div className="card__dismiss">
-				<i className="far fa-times-circle fa-2x"></i>
+				<i
+					className="far fa-times-circle fa-2x"
+					onClick={() => deleteFromWishlist(product._id, setWishList, token)}
+				></i>
 			</div>
 			<img className="card__image" src={product.image} alt={product.title} />
 			<div className="card__titles">
