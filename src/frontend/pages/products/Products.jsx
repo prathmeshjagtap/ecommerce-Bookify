@@ -10,8 +10,7 @@ import {
 	filterByCategory,
 } from "../../utils/filters";
 import "./products.css";
-
-const axios = require("axios").default;
+import axios from "axios";
 
 function Products() {
 	const { state } = useFilter();
@@ -23,6 +22,7 @@ function Products() {
 		filterByRatings,
 		filterByCategory
 	)(state, dataState.products);
+
 	return (
 		<div>
 			<Navbar />

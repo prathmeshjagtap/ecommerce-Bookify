@@ -1,32 +1,23 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
+import { Link } from "react-router-dom";
 import { Navbar, WishListCard } from "../../components";
+import { useWishlistContext } from "../../contexts";
+
 import "./wishList.css";
 
-const axios = require("axios").default;
-
 function WishList() {
-	const [products, setProducts] = useState([]);
-	useEffect(() => {
-		(async () => {
-			try {
-				const response = await axios.get("/api/products");
-				if (response.status === 200) {
-					setProducts([...response.data.products]);
-				}
-			} catch (error) {
-				console.log(error);
-			}
-		})();
-	}, []);
+	const { wishList } = useWishlistContext();
 
 	return (
 		<div>
 			<Navbar />
+
 			<main className="wishlist__container">
+				<Link to="/products">Products Page</Link>
 				<h1 className="wishlist__name">My Wishlist</h1>
 				<div className="wishlist">
-					{products &&
-						products.map((product) => (
+					{wishList &&
+						wishList.map((product) => (
 							<WishListCard key={product.id} product={product} />
 						))}
 				</div>
