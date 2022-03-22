@@ -10,22 +10,26 @@ function WishListProvider({ children }) {
 	const { authState } = useAuthContext();
 	const { token } = authState;
 	useEffect(() => {
-		(async () => {
-			try {
-				const response = await axios.get("/api/user/wishlist", {
-					headers: {
-						authorization: token,
-					},
-				});
+		if (token) {
+			(async () => {
+				try {
+					const response = await axios.get("/api/user/wishlist", {
+						headers: {
+							authorization: token,
+						},
+					});
 
-				if (response.status === 200) {
-					setWishList(response.data.wishlist);
+					if (response.status === 200) {
+						setWishList(response.data.wishlist);
+					}
+				} catch (error) {
+					console.log(error);
 				}
-			} catch (error) {
-				console.log(error);
-			}
-		})();
-	}, []);
+			})();
+		} else {
+			setWishList([]);
+		}
+	}, [token]);
 
 	return (
 		<wishlistContext.Provider value={{ wishList, setWishList }}>

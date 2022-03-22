@@ -1,12 +1,21 @@
 import React from "react";
 import "./ecommerceCard.css";
-import { useAuthContext, useWishlistContext } from "../../contexts";
-import { deleteFromWishlist } from "../../helpers";
+import {
+	useAuthContext,
+	useCartContext,
+	useWishlistContext,
+} from "../../contexts";
+import {
+	deleteFromWishlist,
+	addToCart,
+	incrementCartItem,
+} from "../../helpers";
 
 function WishListCard({ product }) {
 	const { authState } = useAuthContext();
 	const { token } = authState;
 	const { setWishList } = useWishlistContext();
+	const { cart, setCart } = useCartContext();
 
 	return (
 		<div className="card__ecommerce">
@@ -35,7 +44,17 @@ function WishListCard({ product }) {
 					<i className="fas fa-star rating__icon"></i>
 				</div>
 			</div>
-			<button className="card__button-ecom">Add to cart</button>
+
+			<button
+				className="card__button-ecom"
+				onClick={() => {
+					cart.find((cartItem) => cartItem._id == product._id)
+						? incrementCartItem(product._id, setCart, token, null)
+						: addToCart(product, setCart, token);
+				}}
+			>
+				Add to cart
+			</button>
 		</div>
 	);
 }
