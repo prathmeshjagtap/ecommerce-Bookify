@@ -1,13 +1,18 @@
 import React from "react";
 import "./ecommerceCard.css";
-import { useWishlistContext, useAuthContext } from "../../contexts";
-import { addToWishlist, deleteFromWishlist } from "../../helpers";
+import {
+	useWishlistContext,
+	useAuthContext,
+	useCartContext,
+} from "../../contexts";
+import { addToWishlist, deleteFromWishlist, addToCart } from "../../helpers";
 import { useNavigate } from "react-router-dom";
 
 function ProductCard({ product }) {
 	const { wishList, setWishList } = useWishlistContext();
 	const { authState } = useAuthContext();
 	const { token } = authState;
+	const { cart, setCart } = useCartContext();
 	const navigate = useNavigate();
 
 	return (
@@ -48,7 +53,20 @@ function ProductCard({ product }) {
 					<i className="fas fa-star rating__icon"></i>
 				</div>
 			</div>
-			<button className="card__button-ecom">Add to cart</button>
+			{cart.find((cartItem) => cartItem._id === product._id) ? (
+				<button className="card__button-ecom" onClick={() => navigate("/cart")}>
+					Go to Cart
+				</button>
+			) : (
+				<button
+					className="card__button-ecom"
+					onClick={() => {
+						token ? addToCart(product, setCart, token) : navigate("/login");
+					}}
+				>
+					Add to cart
+				</button>
+			)}
 		</div>
 	);
 }

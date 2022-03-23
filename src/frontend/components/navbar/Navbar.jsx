@@ -2,7 +2,11 @@ import React from "react";
 import "./navbar.css";
 import Logo from "../../assets/Logo.svg";
 import { Link } from "react-router-dom";
-import { useAuthContext, useWishlistContext } from "../../contexts";
+import {
+	useAuthContext,
+	useCartContext,
+	useWishlistContext,
+} from "../../contexts";
 import { authActions } from "../../reducer";
 import { useNavigate } from "react-router-dom";
 
@@ -10,6 +14,8 @@ function Navbar() {
 	const { authState, authDispatch } = useAuthContext();
 	const { token } = authState;
 	const { wishList } = useWishlistContext();
+	const { cart } = useCartContext();
+
 	const navigate = useNavigate();
 
 	const logoutHandler = (e) => {
@@ -53,7 +59,7 @@ function Navbar() {
 						</Link>
 						<Link to={token ? "/Cart" : "/login"} className="badge__container">
 							<i className="fas fa-shopping-cart Navigation__icon "></i>
-							<div className="badge_count">0</div>
+							<div className="badge_count">{token ? cart.length : 0}</div>
 						</Link>
 					</ul>
 				</div>

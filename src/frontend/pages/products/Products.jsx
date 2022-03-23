@@ -10,7 +10,6 @@ import {
 	filterByCategory,
 } from "../../utils/filters";
 import "./products.css";
-import axios from "axios";
 
 function Products() {
 	const { state } = useFilter();
