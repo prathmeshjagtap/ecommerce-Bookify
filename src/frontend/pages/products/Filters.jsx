@@ -6,14 +6,14 @@ import { filterAction } from "../../reducer";
 function Filters() {
 	const { state, dispatch } = useFilter();
 
-	const { sortByPrice, priceRange, filterByCategory, ratings } = state;
+	const { sortByPrice, priceRange, ratings, categories } = state;
 
-	const categories = [
-		"childrenBooks",
-		"fiction",
-		"newReleases",
-		"selfHelp",
-		"biographies",
+	const categoryArray = [
+		"Children-Books",
+		"Fiction",
+		"New-Releases",
+		"Self-Help",
+		"Biographies",
 	];
 
 	const ratingsValue = [4, 3, 2, 1];
@@ -48,15 +48,15 @@ function Filters() {
 
 				<h1 className="filter__heading">Category</h1>
 				<ul className="aside__list">
-					{categories.map((category) => (
+					{categoryArray.map((category) => (
 						<li key={category}>
 							<input
-								checked={filterByCategory[category]}
+								checked={categories && categories.includes(category)}
 								type="checkbox"
-								id={category}
+								value={category}
 								onChange={() =>
 									dispatch({
-										type: filterAction.FILTER_BY_CATEGORY,
+										type: "FILTER_BY_CATEGORY",
 										payload: category,
 									})
 								}

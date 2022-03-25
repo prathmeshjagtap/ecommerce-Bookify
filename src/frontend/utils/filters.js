@@ -19,19 +19,16 @@ const filterByPrice = (state, data) => {
 };
 
 const filterByCategory = (state, data) => {
-	let filterByCategoryData = [];
-	let flag = false;
-	for (const category in state.filterByCategory) {
-		if (state.filterByCategory[category]) {
-			flag = true;
-			filterByCategoryData = [
-				...filterByCategoryData,
-				...data.filter((item) => item.categoryName === category),
-			];
-		}
+	if (state.categories.length !== 0) {
+		return data.reduce((acc, curr) => {
+			if (state.categories.includes(curr.categoryName)) {
+				return [...acc, curr];
+			} else {
+				return acc;
+			}
+		}, []);
 	}
-
-	return flag ? filterByCategoryData : data;
+	return data;
 };
 
 const filterByRatings = (state, data) => {

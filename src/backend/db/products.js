@@ -13,7 +13,7 @@ export const products = [
 		price: "360",
 		previousPrice: "400",
 		image: "/assets/productImages/Biography.jpg",
-		categoryName: "biographies",
+		categoryName: "Biographies",
 		rating: 5,
 	},
 	{
@@ -23,7 +23,7 @@ export const products = [
 		price: "380",
 		previousPrice: "420",
 		image: "/assets/productImages/childrens.jpg",
-		categoryName: "childrenBooks",
+		categoryName: "Children-Books",
 		rating: 1.4,
 	},
 	{
@@ -33,7 +33,7 @@ export const products = [
 		price: "500",
 		previousPrice: "620",
 		image: "/assets/productImages/fiction.jpg",
-		categoryName: "fiction",
+		categoryName: "Fiction",
 		rating: 1.4,
 	},
 	{
@@ -43,7 +43,7 @@ export const products = [
 		price: "250",
 		previousPrice: "320",
 		image: "/assets/productImages/newrelease.jpg",
-		categoryName: "newReleases",
+		categoryName: "New-Releases",
 		rating: 4.6,
 	},
 	{
@@ -53,7 +53,7 @@ export const products = [
 		price: "600",
 		previousPrice: "720",
 		image: "/assets/productImages/naval_book.jpg",
-		categoryName: "selfHelp",
+		categoryName: "Self-Help",
 		rating: 5,
 	},
 	{
@@ -63,7 +63,7 @@ export const products = [
 		price: "360",
 		previousPrice: "400",
 		image: "/assets/productImages/Biography.jpg",
-		categoryName: "biographies",
+		categoryName: "Biographies",
 		rating: 4.8,
 	},
 	{
@@ -73,7 +73,7 @@ export const products = [
 		price: "380",
 		previousPrice: "420",
 		image: "/assets/productImages/childrens.jpg",
-		categoryName: "childrenBooks",
+		categoryName: "Children-Books",
 		rating: 2,
 	},
 	{
@@ -83,7 +83,7 @@ export const products = [
 		price: "500",
 		previousPrice: "620",
 		image: "/assets/productImages/fiction.jpg",
-		categoryName: "fiction",
+		categoryName: "Fiction",
 		rating: 1,
 	},
 	{
@@ -93,7 +93,7 @@ export const products = [
 		price: "250",
 		previousPrice: "320",
 		image: "/assets/productImages/newrelease.jpg",
-		categoryName: "newReleases",
+		categoryName: "New-Releases",
 		rating: 5,
 	},
 	{
@@ -103,7 +103,7 @@ export const products = [
 		price: "600",
 		previousPrice: "720",
 		image: "/assets/productImages/naval_book.jpg",
-		categoryName: "selfHelp",
+		categoryName: "Self-Help",
 		rating: 4,
 	},
 	{
@@ -113,7 +113,7 @@ export const products = [
 		price: "360",
 		previousPrice: "400",
 		image: "/assets/productImages/Biography.jpg",
-		categoryName: "biographies",
+		categoryName: "Biographies",
 		rating: 5,
 	},
 	{
@@ -123,7 +123,7 @@ export const products = [
 		price: "380",
 		previousPrice: "420",
 		image: "/assets/productImages/childrens.jpg",
-		categoryName: "childrenBooks",
+		categoryName: "Children-Books",
 		rating: 1,
 	},
 	{
@@ -133,7 +133,7 @@ export const products = [
 		price: "500",
 		previousPrice: "620",
 		image: "/assets/productImages/fiction.jpg",
-		categoryName: "fiction",
+		categoryName: "Fiction",
 		rating: 2,
 	},
 	{
@@ -143,7 +143,7 @@ export const products = [
 		price: "250",
 		previousPrice: "320",
 		image: "/assets/productImages/newrelease.jpg",
-		categoryName: "newReleases",
+		categoryName: "New-Releases",
 		rating: 4,
 	},
 	{
@@ -153,7 +153,7 @@ export const products = [
 		price: "600",
 		previousPrice: "720",
 		image: "/assets/productImages/naval_book.jpg",
-		categoryName: "selfHelp",
+		categoryName: "Self-Help",
 		rating: 3,
 	},
 ];
