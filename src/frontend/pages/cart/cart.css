@@ -1,5 +1,5 @@
 .cart__name {
-	margin-top: calc(3 * var(--margin-rem-m));
+	margin-top: var(--margin-rem-m);
 	text-align: center;
 }
 
@@ -28,8 +28,7 @@
 	border-radius: var(--border-radius-s);
 	align-self: flex-start;
 	position: sticky;
-	top: 10rem;
-	margin-top: 5rem;
+	top: 14rem;
 }
 
 .cart__bill h2 {

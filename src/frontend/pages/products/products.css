@@ -15,7 +15,6 @@
 	display: flex;
 	flex-direction: column;
 	padding: 0 var(--padding-rem-m);
-	margin-top: calc(3 * var(--padding-rem-m));
 }
 .aside__filter {
 	display: flex;
@@ -56,7 +55,7 @@ input[type="checkbox"] {
 	width: 100%;
 }
 .Product__categoery__name {
-	margin: 6.5rem 0 var(--margin-rem-m) var(--margin-rem-m);
+	margin: var(--margin-rem-m);
 	font-size: 1.4rem;
 }
 
