@@ -56,7 +56,7 @@ function Filters() {
 								value={category}
 								onChange={() =>
 									dispatch({
-										type: "FILTER_BY_CATEGORY",
+										type: filterAction.FILTER_BY_CATEGORY,
 										payload: category,
 									})
 								}

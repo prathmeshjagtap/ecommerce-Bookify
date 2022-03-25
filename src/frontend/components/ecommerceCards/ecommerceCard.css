@@ -10,3 +10,10 @@
 .card__dismiss {
 	color: var(--text-color);
 }
+
+.card__ecommerce {
+	transition: transform 450ms;
+}
+.card__ecommerce:hover {
+	transform: scale(1.04);
+}
