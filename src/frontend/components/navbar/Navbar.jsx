@@ -29,46 +29,44 @@ function Navbar() {
 	};
 
 	return (
-		<div>
-			<nav className="navigation__component">
-				<div className="nav">
-					<a className="toggles">
-						<i className="fas fa-bars"></i>
-					</a>
-					<Link className="nav__logo" to="/">
-						<img className="nav__logo-image" alt="website logo" src={Logo} />
-					</Link>
-					<div className="nav__search">
-						<input className="input" placeholder="Search For items" />
-						<i className="fa fa-search search__icon"></i>
-					</div>
-
-					<ul className="nav__right">
-						<Link to="/Login">
-							<button className="btn btn-primary" onClick={logoutHandler}>
-								{token ? "Logout" : "Login"}
-							</button>
-						</Link>
-
-						<Link
-							to={token ? "/WishList" : "/login"}
-							className="badge__container"
-						>
-							<i className="far fa-heart Navigation__icon "></i>
-							<div className="badge_count">{token ? wishList.length : 0}</div>
-						</Link>
-						<Link to={token ? "/Cart" : "/login"} className="badge__container">
-							<i className="fas fa-shopping-cart Navigation__icon "></i>
-							<div className="badge_count">{token ? cart.length : 0}</div>
-						</Link>
-					</ul>
-				</div>
-				<div className="search__mobile">
+		<nav className="navigation__component">
+			<div className="nav">
+				<a className="toggles">
+					<i className="fas fa-bars"></i>
+				</a>
+				<Link className="nav__logo" to="/">
+					<img className="nav__logo-image" alt="website logo" src={Logo} />
+				</Link>
+				<div className="nav__search">
 					<input className="input" placeholder="Search For items" />
 					<i className="fa fa-search search__icon"></i>
 				</div>
-			</nav>
-		</div>
+
+				<ul className="nav__right">
+					<Link to="/Login">
+						<button className="btn btn-primary" onClick={logoutHandler}>
+							{token ? "Logout" : "Login"}
+						</button>
+					</Link>
+
+					<Link
+						to={token ? "/WishList" : "/login"}
+						className="badge__container"
+					>
+						<i className="far fa-heart Navigation__icon "></i>
+						<div className="badge_count">{token ? wishList.length : 0}</div>
+					</Link>
+					<Link to={token ? "/Cart" : "/login"} className="badge__container">
+						<i className="fas fa-shopping-cart Navigation__icon "></i>
+						<div className="badge_count">{token ? cart.length : 0}</div>
+					</Link>
+				</ul>
+			</div>
+			<div className="search__mobile">
+				<input className="input" placeholder="Search For items" />
+				<i className="fa fa-search search__icon"></i>
+			</div>
+		</nav>
 	);
 }
 

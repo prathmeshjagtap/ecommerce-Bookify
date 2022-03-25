@@ -1,6 +1,6 @@
 .wishlist__container {
 	padding: var(--padding-rem-l);
-	margin-top: var(--margin-rem-m);
+	padding-top: var(--padding-rem-s);
 }
 .wishlist__name {
 	margin-bottom: var(--margin-rem-m);

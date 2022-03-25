@@ -9,58 +9,18 @@ const filterReducer = (state, action) => {
 		case filterAction.FILTER_BY_RATINGS:
 			return { ...state, ratings: action.payload };
 		case filterAction.FILTER_BY_CATEGORY:
-			if (action.payload === "childrenBooks")
-				return {
-					...state,
-					filterByCategory: {
-						...state.filterByCategory,
-						childrenBooks: !state.filterByCategory.childrenBooks,
-					},
-				};
-			if (action.payload === "fiction")
-				return {
-					...state,
-					filterByCategory: {
-						...state.filterByCategory,
-						fiction: !state.filterByCategory.fiction,
-					},
-				};
-			if (action.payload === "newReleases")
-				return {
-					...state,
-					filterByCategory: {
-						...state.filterByCategory,
-						newReleases: !state.filterByCategory.newReleases,
-					},
-				};
-			if (action.payload === "selfHelp")
-				return {
-					...state,
-					filterByCategory: {
-						...state.filterByCategory,
-						selfHelp: !state.filterByCategory.selfHelp,
-					},
-				};
-			if (action.payload === "biographies")
-				return {
-					...state,
-					filterByCategory: {
-						...state.filterByCategory,
-						biographies: !state.filterByCategory.biographies,
-					},
-				};
+			return {
+				...state,
+				categories: state.categories.includes(action.payload)
+					? state.categories.filter((value) => value !== action.payload)
+					: [...state.categories, action.payload],
+			};
 
 		default:
 			return {
 				sortByPrice: null,
 				priceRange: null,
-				filterByCategory: {
-					newReleases: false,
-					fiction: false,
-					biographies: false,
-					childrenBooks: false,
-					selfHelp: false,
-				},
+				categories: [],
 				ratings: null,
 			};
 	}

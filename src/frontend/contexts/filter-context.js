@@ -9,13 +9,7 @@ const FilterProvider = ({ children }) => {
 	const [state, dispatch] = useReducer(filterReducer, {
 		sortByPrice: null,
 		priceRange: null,
-		filterByCategory: {
-			newReleases: false,
-			fiction: false,
-			biographies: false,
-			childrenBooks: false,
-			selfHelp: false,
-		},
+		categories: [],
 		ratings: null,
 	});
 
