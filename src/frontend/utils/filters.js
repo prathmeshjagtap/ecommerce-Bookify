@@ -43,10 +43,19 @@ const ComposeFunction =
 	(state, data) =>
 		args.reduce((acc, current) => current(state, acc), data);
 
+const newRealeaseProducts = (data) => {
+	return data.filter((item) => item.categoryName === "New-Releases");
+};
+const fictionProducts = (data) => {
+	return data.filter((item) => item.categoryName === "Fiction");
+};
+
 export {
 	sortbyPriceFunction,
 	filterByPrice,
 	filterByCategory,
 	filterByRatings,
 	ComposeFunction,
+	newRealeaseProducts,
+	fictionProducts,
 };
