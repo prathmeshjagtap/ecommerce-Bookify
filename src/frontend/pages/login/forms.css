@@ -28,6 +28,7 @@
 }
 .input__box {
 	margin: calc(2 * var(--margin-px-l));
+	position: relative;
 }
 .input__box label {
 	font-size: 1rem;
@@ -53,5 +54,16 @@ input[type="checkbox"] {
 	background-color: var(--background-color);
 	border: none;
 	margin-top: calc(2 * var(--margin-px-m));
+	cursor: pointer;
+}
+.btn_login__guest {
+	width: 100%;
+}
+.password__icon {
+	position: absolute;
+	right: 10px;
+	color: var(--text-color);
+	align-items: center;
+	top: 24px;
 	cursor: pointer;
 }
