@@ -50,6 +50,19 @@ const fictionProducts = (data) => {
 	return data.filter((item) => item.categoryName === "Fiction");
 };
 
+const searchVideo = (state, data) => {
+	let { search } = state;
+	if (search) {
+		search = search.toLowerCase();
+		return data.filter(
+			(product) =>
+				product.title.toLowerCase().includes(search) ||
+				product.author.toLowerCase().includes(search)
+		);
+	}
+	return data;
+};
+
 export {
 	sortbyPriceFunction,
 	filterByPrice,
@@ -58,4 +71,5 @@ export {
 	ComposeFunction,
 	newRealeaseProducts,
 	fictionProducts,
+	searchVideo,
 };

@@ -11,6 +11,7 @@ const FilterProvider = ({ children }) => {
 		priceRange: null,
 		categories: [],
 		ratings: null,
+		search: null,
 	});
 
 	return (

@@ -8,6 +8,7 @@ import {
 	filterByPrice,
 	filterByRatings,
 	filterByCategory,
+	searchVideo,
 } from "../../utils/filters";
 import "./products.css";
 
@@ -19,7 +20,8 @@ function Products() {
 		sortbyPriceFunction,
 		filterByPrice,
 		filterByRatings,
-		filterByCategory
+		filterByCategory,
+		searchVideo
 	)(state, dataState.products);
 
 	return (
