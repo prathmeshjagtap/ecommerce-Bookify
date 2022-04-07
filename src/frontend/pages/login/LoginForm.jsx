@@ -1,18 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./forms.css";
 import { useAuthContext } from "../../contexts";
 import { authActions } from "../../reducer";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 function Loginform() {
 	const { authState, authDispatch } = useAuthContext();
+	const [isPasswordVisibile, setIsPasswordVisibile] = useState(false);
 	let navigate = useNavigate();
+	let location = useLocation();
+	let from = location.state?.from?.pathname || "/";
 	const { user, error } = authState;
 	const { email, password } = user;
 
-	const loginHandler = async (e) => {
+	const loginHandler = async (e, email, password) => {
 		e.preventDefault();
 		try {
 			const response = await axios.post(`/api/auth/login`, {
@@ -25,8 +28,7 @@ function Loginform() {
 				type: authActions.TOKEN,
 				payload: response.data.encodedToken,
 			});
-
-			navigate("/");
+			navigate(from, { replace: true });
 		} catch (err) {
 			authDispatch({
 				type: authActions.ERROR,
@@ -48,7 +50,10 @@ function Loginform() {
 		<div>
 			<main className="signup__container">
 				<div className="signup__div">
-					<form className="form" onSubmit={loginHandler}>
+					<form
+						className="form"
+						onSubmit={(e) => loginHandler(e, email, password)}
+					>
 						<h2 className="form__name">Login</h2>
 						<div className="input__box">
 							<label htmlFor="Email">
@@ -82,7 +87,21 @@ function Loginform() {
 										})
 									}
 									placeholder="test@1234"
+									type={`${isPasswordVisibile ? "text" : "password"}`}
+									autoComplete="on"
 								/>
+								<span className="password__icon">
+									<i
+										className={`${
+											isPasswordVisibile ? "fas fa-eye" : "fas fa-eye-slash"
+										}`}
+										onClick={() =>
+											setIsPasswordVisibile(
+												(isPasswordVisibile) => !isPasswordVisibile
+											)
+										}
+									></i>
+								</span>
 							</label>
 							<p className="input__message">Wrong Password</p>
 						</div>
@@ -98,9 +117,16 @@ function Loginform() {
 						<button type="submit" className="btn btn-primary form-btn">
 							Login
 						</button>
+						<button
+							type="button"
+							className="btn btn_login__guest "
+							onClick={(e) => loginHandler(e, "test@gmail.com", "test@1234")}
+						>
+							Login As Guest
+						</button>
 
 						<Link to="/Signup" className="btn-secondary">
-							Create New Account
+							New here 👉 Create New Account
 						</Link>
 					</form>
 				</div>

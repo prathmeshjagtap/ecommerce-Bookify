@@ -25,7 +25,7 @@ function Navbar() {
 			type: authActions.TOKEN,
 			payload: null,
 		});
-		navigate("/login");
+		navigate("/");
 	};
 
 	return (
@@ -43,20 +43,21 @@ function Navbar() {
 				</div>
 
 				<ul className="nav__right">
-					<Link to="/Login">
+					{token ? (
 						<button className="btn btn-primary" onClick={logoutHandler}>
-							{token ? "Logout" : "Login"}
+							Logout
 						</button>
-					</Link>
+					) : (
+						<Link to="/Login">
+							<button className="btn btn-primary">Login</button>
+						</Link>
+					)}
 
-					<Link
-						to={token ? "/WishList" : "/login"}
-						className="badge__container"
-					>
+					<Link to="/WishList" className="badge__container">
 						<i className="far fa-heart Navigation__icon "></i>
 						<div className="badge_count">{token ? wishList.length : 0}</div>
 					</Link>
-					<Link to={token ? "/Cart" : "/login"} className="badge__container">
+					<Link to="/Cart" className="badge__container">
 						<i className="fas fa-shopping-cart Navigation__icon "></i>
 						<div className="badge_count">{token ? cart.length : 0}</div>
 					</Link>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "../login/LoginForm";
 import { useAuthContext } from "../../contexts";
@@ -7,6 +7,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 function SignupForm() {
+	const [isPasswordVisibile, setIsPasswordVisibile] = useState(false);
 	const { authState, authDispatch } = useAuthContext();
 	let navigate = useNavigate();
 	const { user, error } = authState;
@@ -22,13 +23,12 @@ function SignupForm() {
 				email: email,
 				password: password,
 			});
-
 			localStorage.setItem("token", response.data.encodedToken);
 			authDispatch({
 				type: authActions.TOKEN,
 				payload: response.data.encodedToken,
 			});
-			navigate("/login");
+			navigate("/");
 		} catch (err) {
 			authDispatch({
 				type: authActions.ERROR,
@@ -69,15 +69,31 @@ function SignupForm() {
 							<p className="input__message">Wrong Email</p>
 						</div>
 						<div className="input__box">
-							<label htmlFor="Username">
-								Username
+							<label htmlFor="firstName">
+								First Name
 								<input
-									id="Username"
+									id="firstName"
 									className="input"
 									required
 									onChange={(e) =>
 										authDispatch({
 											type: authActions.FIRST_NAME,
+											payload: e.target.value,
+										})
+									}
+								/>
+							</label>
+						</div>
+						<div className="input__box">
+							<label htmlFor="lastName">
+								Last Name
+								<input
+									id="lastName"
+									className="input"
+									required
+									onChange={(e) =>
+										authDispatch({
+											type: authActions.LAST_NAME,
 											payload: e.target.value,
 										})
 									}
@@ -97,26 +113,23 @@ function SignupForm() {
 											payload: e.target.value,
 										})
 									}
+									type={`${isPasswordVisibile ? "text" : "password"}`}
+									autoComplete="on"
 								/>
+								<span className="password__icon">
+									<i
+										className={`${
+											isPasswordVisibile ? "fas fa-eye" : "fas fa-eye-slash"
+										}`}
+										onClick={() =>
+											setIsPasswordVisibile(
+												(isPasswordVisibile) => !isPasswordVisibile
+											)
+										}
+									></i>
+								</span>
 							</label>
 							<p className="input__message">Wrong Password</p>
-						</div>
-						<div className="input__box">
-							<label htmlFor="ConfirmPassword">
-								Confirm Password
-								<input
-									id="ConfirmPassword"
-									className="input"
-									required
-									onChange={(e) =>
-										authDispatch({
-											type: authActions.CONFIRM_PASSWORD,
-											payload: e.target.value,
-										})
-									}
-								/>
-							</label>
-							<p className="input__message">Password does not match</p>
 						</div>
 						<div className="input__box input__TandC">
 							<div>
@@ -128,7 +141,7 @@ function SignupForm() {
 							Create New Account
 						</button>
 						<Link to="/Login" className="btn-secondary">
-							Already have an Account
+							Already have an Account 👉
 						</Link>
 					</form>
 				</div>
