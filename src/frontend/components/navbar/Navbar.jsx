@@ -1,21 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import "./navbar.css";
 import Logo from "../../assets/Logo.svg";
 import { Link } from "react-router-dom";
 import {
 	useAuthContext,
 	useCartContext,
+	useFilter,
 	useWishlistContext,
 } from "../../contexts";
-import { authActions } from "../../reducer";
+import { authActions, filterAction } from "../../reducer";
 import { useNavigate } from "react-router-dom";
 
 function Navbar() {
 	const { authState, authDispatch } = useAuthContext();
+	const { state, dispatch } = useFilter();
 	const { token } = authState;
 	const { wishList } = useWishlistContext();
 	const { cart } = useCartContext();
-
+	const [searchInput, setSearchInput] = useState("");
 	const navigate = useNavigate();
 
 	const logoutHandler = (e) => {
@@ -38,8 +40,20 @@ function Navbar() {
 					<img className="nav__logo-image" alt="website logo" src={Logo} />
 				</Link>
 				<div className="nav__search">
-					<input className="input" placeholder="Search For items" />
-					<i className="fa fa-search search__icon"></i>
+					<input
+						className="input"
+						placeholder="Search For items"
+						onChange={(e) => setSearchInput(e.target.value)}
+					/>
+					<i
+						className="fa fa-search search__icon"
+						onClick={() => {
+							dispatch({
+								type: filterAction.SEARCH_QUERY,
+								payload: searchInput,
+							});
+						}}
+					></i>
 				</div>
 
 				<ul className="nav__right">
@@ -64,8 +78,20 @@ function Navbar() {
 				</ul>
 			</div>
 			<div className="search__mobile">
-				<input className="input" placeholder="Search For items" />
-				<i className="fa fa-search search__icon"></i>
+				<input
+					className="input"
+					placeholder="Search For items"
+					onChange={(e) => setSearchInput(e.target.value)}
+				/>
+				<i
+					className="fa fa-search search__icon"
+					onClick={() => {
+						dispatch({
+							type: filterAction.SEARCH_QUERY,
+							payload: searchInput,
+						});
+					}}
+				></i>
 			</div>
 		</nav>
 	);

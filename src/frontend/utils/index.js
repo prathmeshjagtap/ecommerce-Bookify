@@ -7,4 +7,5 @@ export {
 	ComposeFunction,
 	newRealeaseProducts,
 	fictionProducts,
+	searchVideo,
 } from "./filters";

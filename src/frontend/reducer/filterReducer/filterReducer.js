@@ -15,7 +15,8 @@ const filterReducer = (state, action) => {
 					? state.categories.filter((value) => value !== action.payload)
 					: [...state.categories, action.payload],
 			};
-
+		case filterAction.SEARCH_QUERY:
+			return { ...state, search: action.payload };
 		default:
 			return {
 				sortByPrice: null,
