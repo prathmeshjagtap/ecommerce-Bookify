@@ -9,16 +9,17 @@ import {
 	useWishlistContext,
 } from "../../contexts";
 import { authActions, filterAction } from "../../reducer";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 function Navbar() {
 	const { authState, authDispatch } = useAuthContext();
-	const { state, dispatch } = useFilter();
+	const { dispatch } = useFilter();
 	const { token } = authState;
 	const { wishList } = useWishlistContext();
 	const { cart } = useCartContext();
 	const [searchInput, setSearchInput] = useState("");
 	const navigate = useNavigate();
+	const location = useLocation();
 
 	const logoutHandler = (e) => {
 		e.preventDefault();
@@ -39,7 +40,12 @@ function Navbar() {
 				<Link className="nav__logo" to="/">
 					<img className="nav__logo-image" alt="website logo" src={Logo} />
 				</Link>
-				<div className="nav__search">
+
+				<div
+					className={
+						location?.pathname !== "/" ? "nav__search" : "visibility__hidden"
+					}
+				>
 					<input
 						className="input"
 						placeholder="Search For items"
@@ -77,7 +83,11 @@ function Navbar() {
 					</Link>
 				</ul>
 			</div>
-			<div className="search__mobile">
+			<div
+				className={
+					location?.pathname !== "/" ? "search__mobile" : "display__none"
+				}
+			>
 				<input
 					className="input"
 					placeholder="Search For items"

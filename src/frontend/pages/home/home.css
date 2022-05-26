@@ -16,7 +16,7 @@
 	color: var(--background-color);
 	height: 32rem;
 	width: 100%;
-	margin: var(--margin-rem-s) 0;
+	margin-bottom: var(--margin-rem-s);
 	background-color: #026da2;
 	padding: var(--padding-rem-m);
 	display: flex;

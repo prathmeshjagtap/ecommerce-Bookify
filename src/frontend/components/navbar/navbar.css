@@ -25,3 +25,9 @@
 .search__mobile {
 	border: 1px solid var(--text-color);
 }
+.visibility__hidden {
+	visibility: hidden;
+}
+.display__none {
+	display: none;
+}

@@ -84,6 +84,11 @@
 	border: 1px solid var(--border-color);
 }
 
+.empty__cart_container {
+	margin-top: var(--margin-rem-m);
+	text-align: center;
+}
+
 @media screen and (max-width: 780px) {
 	.cart__conatainer {
 		flex-direction: column;
