@@ -9,6 +9,8 @@ import {
 	Signup,
 } from "./frontend/pages";
 import { PrivateRoute } from "./frontend/privateRoute/PrivateRoute";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
 	return (
@@ -35,6 +37,7 @@ function App() {
 				<Route path="/Login" element={<Login />} />
 				<Route path="/Signup" element={<Signup />} />
 			</Routes>
+			<ToastContainer />
 		</div>
 	);
 }

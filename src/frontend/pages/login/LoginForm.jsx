@@ -5,6 +5,8 @@ import { useAuthContext } from "../../contexts";
 import { authActions } from "../../reducer";
 import axios from "axios";
 import { useNavigate, useLocation } from "react-router-dom";
+import { toast } from "react-toastify";
+import { toastStyle } from "../../components";
 
 function Loginform() {
 	const { authState, authDispatch } = useAuthContext();
@@ -29,12 +31,12 @@ function Loginform() {
 				payload: response.data.encodedToken,
 			});
 			navigate(from, { replace: true });
-		} catch (err) {
+			toast.success("Logged in Successfully ", toastStyle);
+		} catch (error) {
 			authDispatch({
 				type: authActions.ERROR,
 				payload: "Wrong Email or Password , SignUp if you dont have account",
 			});
-			console.log(err);
 		}
 	};
 
@@ -130,8 +132,8 @@ function Loginform() {
 						</Link>
 					</form>
 				</div>
-				<h4 className="error__message">{error}</h4>
 			</main>
+			<h4 className="error__message">{error}</h4>
 		</div>
 	);
 }

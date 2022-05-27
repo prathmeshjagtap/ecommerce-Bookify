@@ -21,7 +21,16 @@
 	position: sticky;
 	top: 0;
 }
+.justify-around {
+	justify-content: space-around;
+}
 .nav__search,
 .search__mobile {
 	border: 1px solid var(--text-color);
+}
+.visibility__hidden {
+	visibility: hidden;
+}
+.display__none {
+	display: none;
 }

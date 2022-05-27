@@ -5,6 +5,8 @@ import { useAuthContext } from "../../contexts";
 import { authActions } from "../../reducer";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import { toastStyle } from "../../components";
 
 function SignupForm() {
 	const [isPasswordVisibile, setIsPasswordVisibile] = useState(false);
@@ -29,22 +31,22 @@ function SignupForm() {
 				payload: response.data.encodedToken,
 			});
 			navigate("/");
-		} catch (err) {
-			authDispatch({
-				type: authActions.ERROR,
-				payload: "Could not Signup ",
-			});
-			console.log(err);
+			toast.success("Singup  Successfull ", toastStyle);
+		} catch (error) {
+			if (error.response.status === 422) {
+				toast.error("Email Already Exists", {
+					position: "top-center",
+					autoClose: 2000,
+				});
+			} else {
+				toast.error("Server Error", {
+					position: "top-center",
+					autoClose: 2000,
+				});
+			}
 		}
 	};
 
-	setTimeout(() => {
-		if (error)
-			authDispatch({
-				type: authActions.ERROR,
-				payload: null,
-			});
-	}, 3000);
 	return (
 		<div>
 			<main className="signup__container">
@@ -57,6 +59,7 @@ function SignupForm() {
 								<input
 									id="Email"
 									className="input"
+									type="email"
 									required
 									onChange={(e) =>
 										authDispatch({
@@ -145,7 +148,6 @@ function SignupForm() {
 						</Link>
 					</form>
 				</div>
-				<h4 className="error__message">{error}</h4>
 			</main>
 		</div>
 	);

@@ -13,3 +13,7 @@
 	gap: var(--gap-sm);
 	justify-content: center;
 }
+.empty__wishlist_container {
+	width: 100%;
+	text-align: center;
+}

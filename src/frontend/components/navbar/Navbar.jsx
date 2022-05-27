@@ -9,16 +9,17 @@ import {
 	useWishlistContext,
 } from "../../contexts";
 import { authActions, filterAction } from "../../reducer";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 function Navbar() {
 	const { authState, authDispatch } = useAuthContext();
-	const { state, dispatch } = useFilter();
+	const { dispatch } = useFilter();
 	const { token } = authState;
 	const { wishList } = useWishlistContext();
 	const { cart } = useCartContext();
 	const [searchInput, setSearchInput] = useState("");
 	const navigate = useNavigate();
+	const location = useLocation();
 
 	const logoutHandler = (e) => {
 		e.preventDefault();
@@ -32,18 +33,33 @@ function Navbar() {
 
 	return (
 		<nav className="navigation__component">
-			<div className="nav">
+			<div
+				className={
+					location?.pathname === "/products" ? "nav" : "nav justify-around"
+				}
+			>
 				<a className="toggles">
 					<i className="fas fa-bars"></i>
 				</a>
 				<Link className="nav__logo" to="/">
 					<img className="nav__logo-image" alt="website logo" src={Logo} />
 				</Link>
-				<div className="nav__search">
+
+				<div
+					className={
+						location?.pathname === "/products" ? "nav__search" : "display__none"
+					}
+				>
 					<input
 						className="input"
 						placeholder="Search For items"
-						onChange={(e) => setSearchInput(e.target.value)}
+						onChange={(e) => {
+							setSearchInput(e.target.value);
+							dispatch({
+								type: filterAction.SEARCH_QUERY,
+								payload: searchInput,
+							});
+						}}
 					/>
 					<i
 						className="fa fa-search search__icon"
@@ -77,11 +93,23 @@ function Navbar() {
 					</Link>
 				</ul>
 			</div>
-			<div className="search__mobile">
+			<div
+				className={
+					location?.pathname === "/products"
+						? "search__mobile"
+						: "display__none"
+				}
+			>
 				<input
 					className="input"
 					placeholder="Search For items"
-					onChange={(e) => setSearchInput(e.target.value)}
+					onChange={(e) => {
+						setSearchInput(e.target.value);
+						dispatch({
+							type: filterAction.SEARCH_QUERY,
+							payload: searchInput,
+						});
+					}}
 				/>
 				<i
 					className="fa fa-search search__icon"

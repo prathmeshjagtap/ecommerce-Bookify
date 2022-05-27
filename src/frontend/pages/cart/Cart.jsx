@@ -3,10 +3,12 @@ import { Navbar } from "../../components";
 import { useCartContext } from "../../contexts";
 import BillCard from "./BillCard";
 import ProductCardHorizontal from "./ProductCardHorizontal";
+import { useNavigate } from "react-router";
 import "./cart.css";
 
 function Cart() {
 	const { cart } = useCartContext();
+	const navigate = useNavigate();
 	return (
 		<div>
 			<Navbar />
@@ -21,9 +23,17 @@ function Cart() {
 				{cart.length ? (
 					<BillCard />
 				) : (
-					<h4 className="empty__Cart">
-						Your Cart is Empty , Add items to cart
-					</h4>
+					<div className="empty__cart_container">
+						<h4 className="empty__Cart">
+							Your Cart is Empty , Add items to cart
+						</h4>
+						<button
+							className="btn btn-primary "
+							onClick={() => navigate("/products")}
+						>
+							Start Shopping
+						</button>
+					</div>
 				)}
 			</main>
 		</div>

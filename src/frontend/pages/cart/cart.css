@@ -73,15 +73,16 @@
 	background-color: var(--background-color);
 	border-radius: var(--border-radius-s);
 	font-size: 1rem;
-	padding: 8px;
+	padding: 4px;
 }
-.quantity__input {
-	width: 7ch;
+.quantity__value {
 	text-align: center;
-	border-radius: var(--border-radius-s);
-	outline: var(--margin-px-s) solid transparent;
-	outline-offset: var(--margin-px-s);
-	border: 1px solid var(--border-color);
+	padding: 4px;
+}
+
+.empty__cart_container {
+	margin-top: var(--margin-rem-m);
+	text-align: center;
 }
 
 @media screen and (max-width: 780px) {
