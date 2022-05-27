@@ -14,7 +14,7 @@ function WishList() {
 
 			<main className="wishlist__container">
 				<h1 className="wishlist__name">My Wishlist</h1>
-				{wishList?.lenght > 0 ? (
+				{wishList?.length > 0 ? (
 					<div className="wishlist">
 						{wishList.map((product) => (
 							<WishListCard key={product.id} product={product} />

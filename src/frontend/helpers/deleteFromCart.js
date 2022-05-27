@@ -1,5 +1,5 @@
 import axios from "axios";
-
+import { toast } from "react-toastify";
 const deleteFromCart = async (id, setCart, token) => {
 	try {
 		const response = await axios.delete(
@@ -14,9 +14,17 @@ const deleteFromCart = async (id, setCart, token) => {
 
 		if (response.status === 200) {
 			setCart(response.data.cart);
+			toast.success("Product Deleted from Cart", {
+				position: "top-right",
+				autoClose: 1000,
+			});
 		}
 	} catch (error) {
 		console.log(error);
+		toast.error("Failed to Delete item from Cart ", {
+			position: "top-right",
+			autoClose: 1000,
+		});
 	}
 	return false;
 };
