@@ -6,7 +6,7 @@ import {
 	useCartContext,
 } from "../../contexts";
 import { addToWishlist, deleteFromWishlist, addToCart } from "../../helpers";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function ProductCard({ product }) {
 	const { wishList, setWishList } = useWishlistContext();
@@ -21,7 +21,10 @@ function ProductCard({ product }) {
 				{wishList.find((wishlistItem) => wishlistItem._id === product._id) ? (
 					<i
 						className="fas fa-heart fa-2x"
-						onClick={() => deleteFromWishlist(product._id, setWishList, token)}
+						onClick={(e) => {
+							e.stopPropagation();
+							deleteFromWishlist(product._id, setWishList, token);
+						}}
 					></i>
 				) : (
 					<i
@@ -34,7 +37,9 @@ function ProductCard({ product }) {
 					></i>
 				)}
 			</div>
-			<img className="card__image" src={product.image} alt={product.title} />
+			<Link to={`/products/${product._id}`}>
+				<img className="card__image" src={product.image} alt={product.title} />
+			</Link>
 			<div className="card__titles">
 				<h2>{product.title}</h2>
 				<p>{product.author}</p>

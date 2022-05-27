@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import {
 	useWishlistContext,
 	useAuthContext,
@@ -21,7 +22,9 @@ function ProductCardHorizontal({ product }) {
 
 	return (
 		<div className="card__horizontal">
-			<img className="card__image" src={product.image} />
+			<Link to={`/products/${product._id}`}>
+				<img className="card__image" src={product.image} />
+			</Link>
 			<div className="card__horizonatal__info">
 				<div className="card__titles__horizontal">
 					<h2>{product.title}</h2>

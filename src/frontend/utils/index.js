@@ -1,4 +1,4 @@
-export { getCategories, getProducts } from "./getData";
+export { getCategories, getProducts, getSingleProduct } from "./getData";
 export {
 	sortbyPriceFunction,
 	filterByPrice,
@@ -8,4 +8,5 @@ export {
 	newRealeaseProducts,
 	fictionProducts,
 	searchVideo,
+	similarProducts,
 } from "./filters";
