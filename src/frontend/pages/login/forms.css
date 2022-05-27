@@ -25,6 +25,7 @@
 .error__message {
 	color: var(--warning-red-color);
 	margin: 1rem;
+	text-align: center;
 }
 .input__box {
 	margin: calc(2 * var(--margin-px-l));
