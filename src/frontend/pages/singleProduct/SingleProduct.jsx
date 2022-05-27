@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { CardSlider, Navbar } from "../../components";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { getSingleProduct, similarProducts } from "../../utils";
 import "./singleProduct.css";
 import {
@@ -14,6 +14,7 @@ import { addToWishlist, addToCart } from "../../helpers";
 function SingleProduct() {
 	const { productId } = useParams();
 	const navigate = useNavigate();
+	const location = useLocation();
 	const [singleProduct, setSingleProduct] = useState(null);
 	const {
 		authState: { token },
@@ -87,7 +88,7 @@ function SingleProduct() {
 									onClick={() => {
 										token
 											? addToCart(singleProduct, setCart, token)
-											: navigate("/login");
+											: navigate("/login", { state: { from: location } });
 									}}
 								>
 									Add to cart
@@ -112,7 +113,7 @@ function SingleProduct() {
 									onClick={() => {
 										token
 											? addToWishlist(singleProduct, setWishList, token)
-											: navigate("/login");
+											: navigate("/login", { state: { from: location } });
 									}}
 								>
 									Add to wishlist

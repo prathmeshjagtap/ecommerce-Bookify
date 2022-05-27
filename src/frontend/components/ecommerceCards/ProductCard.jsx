@@ -6,7 +6,7 @@ import {
 	useCartContext,
 } from "../../contexts";
 import { addToWishlist, deleteFromWishlist, addToCart } from "../../helpers";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 
 function ProductCard({ product }) {
 	const { wishList, setWishList } = useWishlistContext();
@@ -14,7 +14,7 @@ function ProductCard({ product }) {
 	const { token } = authState;
 	const { cart, setCart } = useCartContext();
 	const navigate = useNavigate();
-
+	const location = useLocation();
 	return (
 		<div className="card__ecommerce">
 			<div className="card__badge">
@@ -32,7 +32,7 @@ function ProductCard({ product }) {
 						onClick={() => {
 							token
 								? addToWishlist(product, setWishList, token)
-								: navigate("/login");
+								: navigate("/login", { state: { from: location } });
 						}}
 					></i>
 				)}
@@ -66,7 +66,9 @@ function ProductCard({ product }) {
 				<button
 					className="card__button-ecom"
 					onClick={() => {
-						token ? addToCart(product, setCart, token) : navigate("/login");
+						token
+							? addToCart(product, setCart, token)
+							: navigate("/login", { state: { from: location } });
 					}}
 				>
 					Add to cart

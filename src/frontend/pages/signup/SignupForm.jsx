@@ -12,7 +12,7 @@ function SignupForm() {
 	const [isPasswordVisibile, setIsPasswordVisibile] = useState(false);
 	const { authState, authDispatch } = useAuthContext();
 	let navigate = useNavigate();
-	const { user, error } = authState;
+	const { user } = authState;
 	const { firstName, lastName, email, password } = user;
 
 	const signupHandler = async (e) => {
