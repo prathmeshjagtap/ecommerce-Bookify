@@ -33,7 +33,11 @@ function Navbar() {
 
 	return (
 		<nav className="navigation__component">
-			<div className="nav">
+			<div
+				className={
+					location?.pathname === "/products" ? "nav" : "nav justify-around"
+				}
+			>
 				<a className="toggles">
 					<i className="fas fa-bars"></i>
 				</a>
@@ -43,7 +47,7 @@ function Navbar() {
 
 				<div
 					className={
-						location?.pathname !== "/" ? "nav__search" : "visibility__hidden"
+						location?.pathname === "/products" ? "nav__search" : "display__none"
 					}
 				>
 					<input
@@ -91,7 +95,9 @@ function Navbar() {
 			</div>
 			<div
 				className={
-					location?.pathname !== "/" ? "search__mobile" : "display__none"
+					location?.pathname === "/products"
+						? "search__mobile"
+						: "display__none"
 				}
 			>
 				<input
