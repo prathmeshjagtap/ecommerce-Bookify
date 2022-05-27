@@ -49,7 +49,13 @@ function Navbar() {
 					<input
 						className="input"
 						placeholder="Search For items"
-						onChange={(e) => setSearchInput(e.target.value)}
+						onChange={(e) => {
+							setSearchInput(e.target.value);
+							dispatch({
+								type: filterAction.SEARCH_QUERY,
+								payload: searchInput,
+							});
+						}}
 					/>
 					<i
 						className="fa fa-search search__icon"
@@ -91,7 +97,13 @@ function Navbar() {
 				<input
 					className="input"
 					placeholder="Search For items"
-					onChange={(e) => setSearchInput(e.target.value)}
+					onChange={(e) => {
+						setSearchInput(e.target.value);
+						dispatch({
+							type: filterAction.SEARCH_QUERY,
+							payload: searchInput,
+						});
+					}}
 				/>
 				<i
 					className="fa fa-search search__icon"
