@@ -6,6 +6,7 @@ import { authActions } from "../../reducer";
 import axios from "axios";
 import { useNavigate, useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
+import { toastStyle } from "../../components";
 
 function Loginform() {
 	const { authState, authDispatch } = useAuthContext();
@@ -30,10 +31,7 @@ function Loginform() {
 				payload: response.data.encodedToken,
 			});
 			navigate(from, { replace: true });
-			toast.success("Logged in Successfully ", {
-				position: "top-right",
-				autoClose: 1000,
-			});
+			toast.success("Logged in Successfully ", toastStyle);
 		} catch (error) {
 			authDispatch({
 				type: authActions.ERROR,

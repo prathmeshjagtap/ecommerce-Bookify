@@ -1,5 +1,6 @@
 import axios from "axios";
 import { toast } from "react-toastify";
+import { toastStyle } from "../components";
 
 const decrementCartItem = async (id, setCart, token) => {
 	try {
@@ -20,17 +21,11 @@ const decrementCartItem = async (id, setCart, token) => {
 
 		if (response.status === 200) {
 			setCart(response.data.cart);
-			toast.success("Product Decremented by 1", {
-				position: "top-right",
-				autoClose: 1000,
-			});
+			toast.error("Product Decremented by 1", toastStyle);
 		}
 	} catch (error) {
 		console.error(error);
-		toast.error("Failed to Decrement item ", {
-			position: "top-right",
-			autoClose: 1000,
-		});
+		toast.error("Failed to Decrement item ", toastStyle);
 	}
 };
 

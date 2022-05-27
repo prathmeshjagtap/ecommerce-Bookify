@@ -1,5 +1,6 @@
 import axios from "axios";
 import { toast } from "react-toastify";
+import { toastStyle } from "../components";
 
 const incrementCartItem = async (id, setCart, token) => {
 	try {
@@ -19,17 +20,11 @@ const incrementCartItem = async (id, setCart, token) => {
 
 		if (response.status === 200) {
 			setCart(response.data.cart);
-			toast.success("Product Incremented by 1", {
-				position: "top-right",
-				autoClose: 1000,
-			});
+			toast.success("Product Incremented by 1", toastStyle);
 		}
 	} catch (error) {
 		console.error(error);
-		toast.error("Failed to Increment item ", {
-			position: "top-right",
-			autoClose: 1000,
-		});
+		toast.error("Failed to Increment item ", toastStyle);
 	}
 };
 

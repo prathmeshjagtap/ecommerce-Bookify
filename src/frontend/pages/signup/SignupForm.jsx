@@ -6,6 +6,7 @@ import { authActions } from "../../reducer";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { toastStyle } from "../../components";
 
 function SignupForm() {
 	const [isPasswordVisibile, setIsPasswordVisibile] = useState(false);
@@ -30,10 +31,7 @@ function SignupForm() {
 				payload: response.data.encodedToken,
 			});
 			navigate("/");
-			toast.success("Singup  Successfull ", {
-				position: "top-right",
-				autoClose: 1000,
-			});
+			toast.success("Singup  Successfull ", toastStyle);
 		} catch (error) {
 			if (error.response.status === 422) {
 				toast.error("Email Already Exists", {
