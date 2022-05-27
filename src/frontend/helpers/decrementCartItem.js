@@ -1,16 +1,13 @@
 import axios from "axios";
 import { toast } from "react-toastify";
 
-const decrementCartItem = async (id, setCart, token, quantity) => {
+const decrementCartItem = async (id, setCart, token) => {
 	try {
 		const response = await axios.post(
 			`/api/user/cart/${id}`,
 			{
 				action: {
 					type: "decrement",
-				},
-				quantity: {
-					value: quantity,
 				},
 			},
 

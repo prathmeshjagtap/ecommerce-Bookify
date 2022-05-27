@@ -44,24 +44,17 @@ function ProductCardHorizontal({ product }) {
 							if (product.qty <= 1) {
 								deleteFromCart(product._id, setCart, token);
 							} else {
-								decrementCartItem(product._id, setCart, token, null);
+								decrementCartItem(product._id, setCart, token);
 							}
 						}}
 					>
 						-
 					</button>
-					<input
-						className="quantity__input"
-						type="number"
-						value={product.qty}
-						onChange={(e) =>
-							incrementCartItem(product._id, setCart, token, e.target.value)
-						}
-					/>
+					<span className="quantity__value">{product.qty}</span>
 
 					<button
 						className="quantity__plus"
-						onClick={() => incrementCartItem(product._id, setCart, token, null)}
+						onClick={() => incrementCartItem(product._id, setCart, token)}
 					>
 						+
 					</button>

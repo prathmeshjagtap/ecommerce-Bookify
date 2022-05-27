@@ -1,7 +1,7 @@
 import axios from "axios";
 import { toast } from "react-toastify";
 
-const incrementCartItem = async (id, setCart, token, quantity) => {
+const incrementCartItem = async (id, setCart, token) => {
 	try {
 		const response = await axios.post(
 			`/api/user/cart/${id}`,
@@ -9,11 +9,7 @@ const incrementCartItem = async (id, setCart, token, quantity) => {
 				action: {
 					type: "increment",
 				},
-				quantity: {
-					value: quantity,
-				},
 			},
-
 			{
 				headers: {
 					authorization: token,
