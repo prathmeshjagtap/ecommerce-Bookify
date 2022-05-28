@@ -73,7 +73,6 @@ function SingleProduct() {
 								<span>{singleProduct?.previousPrice}</span>
 							</div>
 						</div>
-
 						<div className="singleProduct__card__buttons">
 							{cart.find((cartItem) => cartItem._id === singleProduct?._id) ? (
 								<button
@@ -94,7 +93,6 @@ function SingleProduct() {
 									Add to cart
 								</button>
 							)}
-
 							{wishList.find(
 								(wishlistItem) => wishlistItem._id === singleProduct?._id
 							) ? (
