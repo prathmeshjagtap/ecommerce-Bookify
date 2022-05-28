@@ -16,7 +16,39 @@
 	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 	cursor: pointer;
 }
+.user__details {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	margin-top: var(--margin-rem-m);
+}
 
 .user__action_icon {
 	color: var(--warning-red-color);
+}
+.user_profile_container {
+	text-align: center;
+	background-color: var(--background-color);
+	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+	padding: var(--padding-rem-s);
+	position: relative;
+	min-width: 250px;
+}
+.user_profile_container h4 {
+	text-align: start;
+	margin: 8px;
+}
+.edit__user__icon {
+	position: absolute;
+	right: 1rem;
+	top: 1rem;
+	font-size: 1.2rem;
+}
+.user__input {
+	display: flex;
+	align-items: center;
+}
+.user__input h4 {
+	min-width: 10ch;
 }

@@ -26,7 +26,7 @@ function Profile() {
 					</div>
 				</Link>
 			</div>
-			<div>
+			<div className="user__details">
 				<Outlet />
 			</div>
 		</div>

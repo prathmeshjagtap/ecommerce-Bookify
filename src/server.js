@@ -28,6 +28,7 @@ import {
 	addAddressHandler,
 	getAddressHandler,
 	removeAddressHandler,
+	editAddressHandler,
 } from "./backend/controllers/UserController";
 import { categories } from "./backend/db/categories";
 import { products } from "./backend/db/products";
@@ -100,10 +101,14 @@ export function makeServer({ environment = "development" } = {}) {
 			// user routes (private)
 			this.post("users/edit", editUserHandler.bind(this));
 			this.get("/users/address", getAddressHandler.bind(this));
-			this.post("/users/address/:addressId/", addAddressHandler.bind(this));
+			this.post("/users/address/add", addAddressHandler.bind(this));
 			this.post(
 				"/users/remove-address/:addressId/",
 				removeAddressHandler.bind(this)
+			);
+			this.post(
+				"/users/edit-address/:addressId/",
+				editAddressHandler.bind(this)
 			);
 		},
 	});

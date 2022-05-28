@@ -170,3 +170,44 @@ export const removeAddressHandler = function (schema, request) {
 		);
 	}
 };
+
+export const editAddressHandler = function (schema, request) {
+	const user = requiresAuth.call(this, request);
+	try {
+		if (!user) {
+			return new Response(
+				404,
+				{},
+				{
+					errors: [
+						"The username you entered is not Registered. Not Found error",
+					],
+				}
+			);
+		}
+		const addressId = request.params.addressId;
+		const { address } = JSON.parse(request.requestBody);
+		const editAddress = user.address.filter(
+			(currAddress) => currAddress._id === addressId
+		);
+
+		let newEdittedAddress = { ...editAddress, ...address };
+		const newAddressArray = user.addressfilter(
+			(currAddress) => currAddress._id !== addressId
+		);
+		user = { ...user, address: [...newAddressArray, newEdittedAddress] };
+		this.db.users.update(
+			{ _id: user._id },
+			{ ...user, updatedAt: formatDate() }
+		);
+		return new Response(200, {}, { address: user.address });
+	} catch (error) {
+		return new Response(
+			500,
+			{},
+			{
+				error,
+			}
+		);
+	}
+};

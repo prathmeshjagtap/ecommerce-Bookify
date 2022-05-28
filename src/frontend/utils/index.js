@@ -10,3 +10,10 @@ export {
 	searchVideo,
 	similarProducts,
 } from "./filters";
+export { getUser, editUser } from "./getUserDetails";
+export {
+	getAddress,
+	editAddress,
+	deleteAddress,
+	addAddress,
+} from "./addressData";
