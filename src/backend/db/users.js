@@ -12,28 +12,6 @@ export const users = [
 		firstName: "Prathmesh",
 		lastName: "Jagtap",
 		email: "prathmesh@gmail.com",
-		password: "prathmesh",
-		address: [
-			{
-				_id: uuid(),
-				name: "Prathmesh",
-				mobile: "9552632234",
-				area: "Pune 315 nicetown hill life is good",
-				locality: "",
-				pincode: "410052",
-				city: "Pune",
-				state: "",
-				alternatePhoneNumber: "1651651655",
-			},
-		],
-		createdAt: formatDate(),
-		updatedAt: formatDate(),
-	},
-	{
-		_id: uuid(),
-		firstName: "test",
-		lastName: "test",
-		email: "test@gmail.com",
 		password: "test@1234",
 		address: [
 			{

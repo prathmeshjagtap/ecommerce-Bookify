@@ -131,7 +131,9 @@ function Loginform() {
 						<button
 							type="button"
 							className="btn btn_login__guest "
-							onClick={(e) => loginHandler(e, "test@gmail.com", "test@1234")}
+							onClick={(e) =>
+								loginHandler(e, "prathmesh@gmail.com", "test@1234")
+							}
 						>
 							Login As Guest
 						</button>

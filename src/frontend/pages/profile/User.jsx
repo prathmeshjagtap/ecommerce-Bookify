@@ -26,7 +26,7 @@ function User() {
 		<div className="user_profile_container">
 			<img
 				className="avatar avatar-m"
-				src="https://easyui-library.netlify.app/assets/images.png"
+				src="https://www.kindpng.com/picc/m/24-248729_stockvader-predicted-adig-user-profile-image-png-transparent.png"
 				alt="avatar"
 			/>
 			<i
