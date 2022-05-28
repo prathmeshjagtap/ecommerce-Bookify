@@ -49,6 +49,12 @@ const newRealeaseProducts = (data) => {
 const fictionProducts = (data) => {
 	return data.filter((item) => item.categoryName === "Fiction");
 };
+const similarProducts = (data, productId) => {
+	const product = data.filter((item) => item._id === productId);
+	return data
+		.filter((item) => item.categoryName === product[0]?.categoryName)
+		.filter((item) => item._id !== productId);
+};
 
 const searchVideo = (state, data) => {
 	let { search } = state;
@@ -72,4 +78,5 @@ export {
 	newRealeaseProducts,
 	fictionProducts,
 	searchVideo,
+	similarProducts,
 };

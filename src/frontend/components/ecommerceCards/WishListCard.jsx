@@ -10,6 +10,7 @@ import {
 	addToCart,
 	incrementCartItem,
 } from "../../helpers";
+import { Link } from "react-router-dom";
 
 function WishListCard({ product }) {
 	const { authState } = useAuthContext();
@@ -25,7 +26,9 @@ function WishListCard({ product }) {
 					onClick={() => deleteFromWishlist(product._id, setWishList, token)}
 				></i>
 			</div>
-			<img className="card__image" src={product.image} alt={product.title} />
+			<Link to={`/products/${product._id}`}>
+				<img className="card__image" src={product.image} alt={product.title} />
+			</Link>
 			<div className="card__titles">
 				<h2>{product.title}</h2>
 				<p>{product.author}</p>

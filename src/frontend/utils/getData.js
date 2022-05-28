@@ -35,4 +35,13 @@ const getProducts = async (dispatch) => {
 	}
 };
 
-export { getCategories, getProducts };
+const getSingleProduct = async (productId) => {
+	try {
+		const response = await axios.get(`/api/products/${productId}`);
+		return response.data.product;
+	} catch (error) {
+		console.error(error);
+	}
+};
+
+export { getCategories, getProducts, getSingleProduct };
