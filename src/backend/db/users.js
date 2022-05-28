@@ -22,7 +22,7 @@ export const users = [
 				locality: "",
 				pincode: "410052",
 				city: "Pune",
-				state: "",
+				state: "Maharashtra",
 				alternatePhoneNumber: "1651651655",
 			},
 		],

@@ -3,13 +3,9 @@ import { userActions } from "../reducer";
 
 const getAddress = async (token, dispatch) => {
 	try {
-		const response = await axios.get(
-			`/api/users/address`,
-			{},
-			{
-				headers: { authorization: token },
-			}
-		);
+		const response = await axios.get(`/api/users/address`, {
+			headers: { authorization: token },
+		});
 		dispatch({
 			type: userActions.GET_ADDRESS,
 			payload: response.data.address,

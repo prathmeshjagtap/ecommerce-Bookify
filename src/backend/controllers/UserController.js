@@ -47,6 +47,7 @@ export const editUserHandler = function (schema, request) {
 				}
 			);
 		}
+		console.log(user);
 		const { userData } = JSON.parse(request.requestBody);
 		user = { ...user, ...userData, updatedAt: formatDate() };
 		this.db.users.update({ _id: user._id }, user);
@@ -68,7 +69,7 @@ export const editUserHandler = function (schema, request) {
  * */
 
 export const getAddressHandler = function (schema, request) {
-	const user = requiresAuth.call(this, request);
+	let user = requiresAuth.call(this, request);
 	try {
 		if (!user) {
 			return new Response(

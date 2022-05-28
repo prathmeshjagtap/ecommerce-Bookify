@@ -52,3 +52,17 @@
 .user__input h4 {
 	min-width: 10ch;
 }
+.address__card {
+	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+	padding: var(--padding-rem-s);
+	position: relative;
+	border-radius: var(--border-radius-m);
+	width: 35ch;
+}
+.address__icons {
+	font-size: 1.2rem;
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+	margin-top: var(--margin-rem-s);
+}
