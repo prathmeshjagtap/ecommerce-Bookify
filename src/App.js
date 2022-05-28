@@ -8,6 +8,7 @@ import {
 	Login,
 	Signup,
 	SingleProduct,
+	Profile,
 } from "./frontend/pages";
 import { PrivateRoute } from "./frontend/privateRoute/PrivateRoute";
 import { ToastContainer } from "react-toastify";
@@ -20,6 +21,14 @@ function App() {
 				<Route path="/" element={<Home />} />
 				<Route path="/products" element={<Products />} />
 				<Route path="/products/:productId" element={<SingleProduct />} />
+				<Route
+					path="/profile"
+					element={
+						<PrivateRoute>
+							<Profile />
+						</PrivateRoute>
+					}
+				/>
 				<Route
 					path="/Cart"
 					element={
