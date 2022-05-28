@@ -12,7 +12,7 @@ function Cart() {
 	return (
 		<div>
 			<Navbar />
-			<h1 className="cart__name">My Wishlist</h1>
+			<h1 className="cart__name">My Cart</h1>
 			<main className="cart__conatainer">
 				<div className="cart__items">
 					{cart &&
@@ -24,9 +24,9 @@ function Cart() {
 					<BillCard />
 				) : (
 					<div className="empty__cart_container">
-						<h4 className="empty__Cart">
+						<h3 className="empty__Cart">
 							Your Cart is Empty , Add items to cart
-						</h4>
+						</h3>
 						<button
 							className="btn btn-primary "
 							onClick={() => navigate("/products")}

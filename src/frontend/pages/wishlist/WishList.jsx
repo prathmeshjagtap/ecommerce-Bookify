@@ -22,7 +22,7 @@ function WishList() {
 					</div>
 				) : (
 					<div className="empty__wishlist_container">
-						<h1>You Dont have items in the Wishlist</h1>
+						<h3 className="empty__Cart">You Dont have items in the Wishlist</h3>
 						<button
 							className="btn btn-primary "
 							onClick={() => navigate("/products")}

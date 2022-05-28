@@ -7,6 +7,7 @@ import axios from "axios";
 import { useNavigate, useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
 import { toastStyle } from "../../components";
+import { useDebugValue } from "react/cjs/react.development";
 
 function Loginform() {
 	const { authState, authDispatch } = useAuthContext();
@@ -14,8 +15,17 @@ function Loginform() {
 	let navigate = useNavigate();
 	let location = useLocation();
 	let from = location.state?.from?.pathname || "/";
-	const { user, error } = authState;
-	const { email, password } = user;
+	const { error } = authState;
+	const [userDetail, setUserDetail] = useState({
+		email: "",
+		password: "",
+	});
+	const handleChange = (e) => {
+		setUserDetail({
+			...userDetail,
+			[e.target.name]: e.target.value,
+		});
+	};
 
 	const loginHandler = async (e, email, password) => {
 		e.preventDefault();
@@ -28,7 +38,10 @@ function Loginform() {
 			localStorage.setItem("token", response.data.encodedToken);
 			authDispatch({
 				type: authActions.TOKEN,
-				payload: response.data.encodedToken,
+				payload: {
+					token: response.data.encodedToken,
+					user: response.data.foundUser,
+				},
 			});
 			navigate(from, { replace: true });
 			toast.success("Logged in Successfully ", toastStyle);
@@ -54,7 +67,9 @@ function Loginform() {
 				<div className="signup__div">
 					<form
 						className="form"
-						onSubmit={(e) => loginHandler(e, email, password)}
+						onSubmit={(e) =>
+							loginHandler(e, userDetail.email, userDetail.password)
+						}
 					>
 						<h2 className="form__name">Login</h2>
 						<div className="input__box">
@@ -64,12 +79,9 @@ function Loginform() {
 									required
 									id="Email"
 									className="input"
-									onChange={(e) =>
-										authDispatch({
-											type: authActions.EMAIL,
-											payload: e.target.value,
-										})
-									}
+									name="email"
+									value={userDetail?.email}
+									onChange={handleChange}
 									placeholder="test@gmail.com"
 								/>
 							</label>
@@ -82,12 +94,9 @@ function Loginform() {
 									required
 									id="Password"
 									className="input"
-									onChange={(e) =>
-										authDispatch({
-											type: authActions.PASSWORD,
-											payload: e.target.value,
-										})
-									}
+									name="password"
+									value={userDetail?.password}
+									onChange={handleChange}
 									placeholder="test@1234"
 									type={`${isPasswordVisibile ? "text" : "password"}`}
 									autoComplete="on"

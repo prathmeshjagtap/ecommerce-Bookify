@@ -10,25 +10,38 @@ import { toastStyle } from "../../components";
 
 function SignupForm() {
 	const [isPasswordVisibile, setIsPasswordVisibile] = useState(false);
-	const { authState, authDispatch } = useAuthContext();
+	const { authDispatch } = useAuthContext();
 	let navigate = useNavigate();
-	const { user } = authState;
-	const { firstName, lastName, email, password } = user;
 
+	const [userDetail, setUserDetail] = useState({
+		firstName: "",
+		lastName: "",
+		email: "",
+		password: "",
+	});
+	const handleChange = (e) => {
+		setUserDetail({
+			...userDetail,
+			[e.target.name]: e.target.value,
+		});
+	};
 	const signupHandler = async (e) => {
 		e.preventDefault();
 
 		try {
 			const response = await axios.post(`/api/auth/signup`, {
-				firstName: firstName,
-				lastName: lastName,
-				email: email,
-				password: password,
+				firstName: userDetail.firstName,
+				lastName: userDetail.lastName,
+				email: userDetail.email,
+				password: userDetail.password,
 			});
 			localStorage.setItem("token", response.data.encodedToken);
 			authDispatch({
 				type: authActions.TOKEN,
-				payload: response.data.encodedToken,
+				payload: {
+					token: response.data.encodedToken,
+					user: response.data.createdUser,
+				},
 			});
 			navigate("/");
 			toast.success("Singup  Successfull ", toastStyle);
@@ -60,13 +73,10 @@ function SignupForm() {
 									id="Email"
 									className="input"
 									type="email"
+									name="email"
+									value={userDetail?.email}
+									onChange={handleChange}
 									required
-									onChange={(e) =>
-										authDispatch({
-											type: authActions.EMAIL,
-											payload: e.target.value,
-										})
-									}
 								/>
 							</label>
 							<p className="input__message">Wrong Email</p>
@@ -76,14 +86,11 @@ function SignupForm() {
 								First Name
 								<input
 									id="firstName"
+									name="firstName"
 									className="input"
+									value={userDetail?.firstName}
+									onChange={handleChange}
 									required
-									onChange={(e) =>
-										authDispatch({
-											type: authActions.FIRST_NAME,
-											payload: e.target.value,
-										})
-									}
 								/>
 							</label>
 						</div>
@@ -92,14 +99,11 @@ function SignupForm() {
 								Last Name
 								<input
 									id="lastName"
+									name="lastName"
 									className="input"
+									value={userDetail?.lastName}
+									onChange={handleChange}
 									required
-									onChange={(e) =>
-										authDispatch({
-											type: authActions.LAST_NAME,
-											payload: e.target.value,
-										})
-									}
 								/>
 							</label>
 						</div>
@@ -108,16 +112,13 @@ function SignupForm() {
 								Password
 								<input
 									id="Password"
+									name="password"
 									className="input"
-									required
-									onChange={(e) =>
-										authDispatch({
-											type: authActions.PASSWORD,
-											payload: e.target.value,
-										})
-									}
+									value={userDetail?.password}
+									onChange={handleChange}
 									type={`${isPasswordVisibile ? "text" : "password"}`}
 									autoComplete="on"
+									required
 								/>
 								<span className="password__icon">
 									<i

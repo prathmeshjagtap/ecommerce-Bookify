@@ -1,0 +1,22 @@
+.user__details__container {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1rem;
+	align-items: center;
+	justify-content: center;
+	margin-top: 4rem;
+}
+.user__action__box {
+	display: flex;
+	align-items: center;
+	padding: var(--padding-rem-s);
+	gap: var(--gap-sm);
+	border-radius: var(--border-radius-s);
+	background-color: var(--background-color);
+	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+	cursor: pointer;
+}
+
+.user__action_icon {
+	color: var(--warning-red-color);
+}
