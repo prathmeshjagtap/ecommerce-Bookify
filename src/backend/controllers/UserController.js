@@ -1,6 +1,6 @@
 import { Response } from "miragejs";
 import { formatDate, requiresAuth } from "../utils/authUtils";
-
+import { v4 as uuid } from "uuid";
 /**
  * All the routes related to user are present here.
  * */
@@ -47,7 +47,6 @@ export const editUserHandler = function (schema, request) {
 				}
 			);
 		}
-		console.log(user);
 		const { userData } = JSON.parse(request.requestBody);
 		user = { ...user, ...userData, updatedAt: formatDate() };
 		this.db.users.update({ _id: user._id }, user);
@@ -99,8 +98,7 @@ export const getAddressHandler = function (schema, request) {
  * */
 
 export const addAddressHandler = function (schema, request) {
-	const { address } = request.params;
-
+	const { address } = JSON.parse(request.requestBody);
 	const user = requiresAuth.call(this, request);
 	try {
 		if (!user) {
@@ -114,7 +112,12 @@ export const addAddressHandler = function (schema, request) {
 				}
 			);
 		}
-		user.address.push(address);
+		const _id = uuid();
+		let newAddress = {
+			_id,
+			...address,
+		};
+		user.address.push(newAddress);
 		this.db.users.update(
 			{ _id: user._id },
 			{ ...user, updatedAt: formatDate() }
@@ -187,19 +190,37 @@ export const editAddressHandler = function (schema, request) {
 			);
 		}
 		const addressId = request.params.addressId;
-		const { address } = JSON.parse(request.requestBody);
-		const editAddress = user.address.filter(
-			(currAddress) => currAddress._id === addressId
-		);
+		const {
+			address: {
+				name,
+				mobile,
+				area,
+				locality,
+				pincode,
+				city,
+				state,
+				alternatePhoneNumber,
+			},
+		} = JSON.parse(request.requestBody);
 
-		let newEdittedAddress = { ...editAddress, ...address };
-		const newAddressArray = user.addressfilter(
-			(currAddress) => currAddress._id !== addressId
-		);
-		user = { ...user, address: [...newAddressArray, newEdittedAddress] };
+		let addressList = user.address;
+		addressList.forEach((address) => {
+			if (address._id === addressId) {
+				address.name = name;
+				address.mobile = mobile;
+				address.area = area;
+				address.locality = locality;
+				address.pincode = pincode;
+				address.city = city;
+				address.state = state;
+				address.alternatePhoneNumber = alternatePhoneNumber;
+			}
+		});
+		console.log(addressList);
+		let userData = { ...user, address: addressList };
 		this.db.users.update(
 			{ _id: user._id },
-			{ ...user, updatedAt: formatDate() }
+			{ ...userData, updatedAt: formatDate() }
 		);
 		return new Response(200, {}, { address: user.address });
 	} catch (error) {

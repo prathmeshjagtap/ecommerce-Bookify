@@ -1,0 +1,24 @@
+.address__main__container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+
+.address__container {
+	display: flex;
+	padding: 1rem;
+	flex-wrap: wrap;
+	gap: var(--gap-sm);
+	align-items: center;
+}
+.btn_add_address {
+	align-self: center;
+}
+.empty__address__container {
+	display: flex;
+	align-items: center;
+	width: 100%;
+	flex-direction: column;
+	justify-content: center;
+}

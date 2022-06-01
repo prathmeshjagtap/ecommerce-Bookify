@@ -17,3 +17,4 @@ export {
 	deleteAddress,
 	addAddress,
 } from "./addressData";
+export { states } from "./statesConstants";
