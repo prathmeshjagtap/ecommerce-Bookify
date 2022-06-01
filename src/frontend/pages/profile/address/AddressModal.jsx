@@ -143,7 +143,7 @@ function AddressModal({ isEdit, address, modalOpen, closeModal }) {
 							minLength="10"
 							maxLength="10"
 							placeholder="Optional"
-							value={addressInput?.city}
+							value={addressInput?.alternatePhoneNumber}
 							onChange={handleChange}
 						/>
 					</label>
