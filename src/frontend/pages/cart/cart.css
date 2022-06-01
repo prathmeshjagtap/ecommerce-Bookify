@@ -1,4 +1,5 @@
 .cart__name {
+	margin-bottom: var(--margin-rem-m);
 	margin-top: var(--margin-rem-m);
 	text-align: center;
 }
@@ -16,8 +17,9 @@
 	margin-top: var(--margin-rem-m);
 }
 
-.cart__empty {
+.empty__Cart {
 	text-align: center;
+	margin-bottom: 1rem;
 }
 
 /* Bill Card */
@@ -81,7 +83,6 @@
 }
 
 .empty__cart_container {
-	margin-top: var(--margin-rem-m);
 	text-align: center;
 }
 

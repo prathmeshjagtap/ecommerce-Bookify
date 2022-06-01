@@ -9,14 +9,7 @@ function AuthProvider({ children }) {
 	const localstoragetoken = localStorage.getItem("token");
 
 	const [authState, authDispatch] = useReducer(authReducer, {
-		user: {
-			firstName: null,
-			lastName: null,
-			email: null,
-			password: null,
-			confirmPassword: null,
-		},
-
+		user: null,
 		error: null,
 		token: localstoragetoken ?? null,
 	});

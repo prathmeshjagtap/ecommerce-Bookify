@@ -38,13 +38,21 @@ function Navbar() {
 					location?.pathname === "/products" ? "nav" : "nav justify-around"
 				}
 			>
-				<a className="toggles">
-					<i className="fas fa-bars"></i>
-				</a>
-				<Link className="nav__logo" to="/">
-					<img className="nav__logo-image" alt="website logo" src={Logo} />
-				</Link>
-
+				<div className="nav__left">
+					<Link className="nav__logo" to="/">
+						<img className="nav__logo-image" alt="website logo" src={Logo} />
+					</Link>
+					<Link
+						to="/products"
+						className={
+							location?.pathname !== "/products"
+								? "btn btn-primary"
+								: "display__none"
+						}
+					>
+						Products
+					</Link>
+				</div>
 				<div
 					className={
 						location?.pathname === "/products" ? "nav__search" : "display__none"
@@ -71,12 +79,22 @@ function Navbar() {
 						}}
 					></i>
 				</div>
-
 				<ul className="nav__right">
 					{token ? (
-						<button className="btn btn-primary" onClick={logoutHandler}>
-							Logout
-						</button>
+						<div className="dropdown">
+							<i className="fas fa-user-circle Navigation__icon"></i>
+							<div className="dropdown-content">
+								<button
+									className="btn__dropdown"
+									onClick={() => navigate("/profile")}
+								>
+									Profile
+								</button>
+								<button className="btn__dropdown" onClick={logoutHandler}>
+									Logout
+								</button>
+							</div>
+						</div>
 					) : (
 						<Link to="/Login">
 							<button className="btn btn-primary">Login</button>

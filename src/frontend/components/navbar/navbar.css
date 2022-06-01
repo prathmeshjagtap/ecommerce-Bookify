@@ -34,3 +34,49 @@
 .display__none {
 	display: none;
 }
+
+.nav__left {
+	display: flex;
+	align-items: center;
+	gap: 4rem;
+}
+
+.dropdown {
+	position: relative;
+	display: inline-block;
+}
+
+.dropdown-content {
+	display: none;
+	position: absolute;
+	background-color: var(--background-color);
+	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+	z-index: 1;
+	padding: 8px;
+	border-radius: 4px;
+}
+
+.btn__dropdown {
+	display: block;
+	padding: 12px;
+	background: none;
+	border: none;
+	font-size: 1rem;
+	width: 100%;
+	cursor: pointer;
+	border-radius: 4px;
+}
+.btn__dropdown:hover {
+	background-color: var(--primary-color);
+	color: var(--background-color);
+}
+
+.dropdown:hover .dropdown-content {
+	display: block;
+}
+
+@media screen and (max-width: 480px) {
+	.nav__left {
+		gap: 0;
+	}
+}
