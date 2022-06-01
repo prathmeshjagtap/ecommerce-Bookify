@@ -1,15 +1,6 @@
 import { Response } from "miragejs";
 import { formatDate, requiresAuth } from "../utils/authUtils";
 import { v4 as uuid } from "uuid";
-/**
- * All the routes related to user are present here.
- * */
-
-/*
- * This handler handles get a user from userId in the db.
- * send GET Request at /api/users/:userId
- *
- */
 
 export const getUserHandler = function (schema, request) {
 	const currentuser = request.params.userId;
@@ -26,12 +17,6 @@ export const getUserHandler = function (schema, request) {
 		);
 	}
 };
-
-/**
- * This handler handles updating user details.
- * send POST Request at /api/users/edit
- * body contains { userData }
- * */
 
 export const editUserHandler = function (schema, request) {
 	let user = requiresAuth.call(this, request);
@@ -62,11 +47,6 @@ export const editUserHandler = function (schema, request) {
 	}
 };
 
-/**
- * This handler gets all the user bookmarks from the db.
- * send GET Request at /api/users/bookmark/
- * */
-
 export const getAddressHandler = function (schema, request) {
 	let user = requiresAuth.call(this, request);
 	try {
@@ -92,10 +72,6 @@ export const getAddressHandler = function (schema, request) {
 		);
 	}
 };
-/**
- * This handler handles adding a post to user's bookmarks in the db.
- * send POST Request at /api/users/bookmark/:postId/
- * */
 
 export const addAddressHandler = function (schema, request) {
 	const { address } = JSON.parse(request.requestBody);
@@ -133,11 +109,6 @@ export const addAddressHandler = function (schema, request) {
 		);
 	}
 };
-
-/**
- * This handler handles adding a post to user's bookmarks in the db.
- * send POST Request at /api/users/remove-bookmark/:postId/
- * */
 
 export const removeAddressHandler = function (schema, request) {
 	const { addressId } = request.params;
@@ -216,7 +187,6 @@ export const editAddressHandler = function (schema, request) {
 				address.alternatePhoneNumber = alternatePhoneNumber;
 			}
 		});
-		console.log(addressList);
 		let userData = { ...user, address: addressList };
 		this.db.users.update(
 			{ _id: user._id },
