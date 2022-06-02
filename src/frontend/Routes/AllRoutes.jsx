@@ -11,6 +11,8 @@ import {
 	Profile,
 	Address,
 	User,
+	Checkout,
+	OrderSummary,
 } from "../pages";
 import { PrivateRoute } from "./PrivateRoute";
 function AllRoutes() {
@@ -29,6 +31,8 @@ function AllRoutes() {
 					</Route>
 					<Route path="/Cart" element={<Cart />} />
 					<Route path="/WishList" element={<WishList />} />
+					<Route path="/checkout" element={<Checkout />} />
+					<Route path="/orderSummary" element={<OrderSummary />} />
 				</Route>
 			</Routes>
 		</div>

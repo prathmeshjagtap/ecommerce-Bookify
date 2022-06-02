@@ -1,9 +1,13 @@
 import React from "react";
-import { useCartContext } from "../../contexts";
+import { useCartContext, useUserContext } from "../../contexts";
 import "./cart.css";
+import { useNavigate, useLocation } from "react-router-dom";
 
 function BillCard() {
 	const { cart } = useCartContext();
+	const { deliveryAddress } = useUserContext();
+	const navigate = useNavigate();
+	const { pathname } = useLocation();
 	const deliveryCharges = 199;
 	const totalPreviousPrice = cart.reduce(
 		(acc, current) => acc + Number(current.previousPrice) * Number(current.qty),
@@ -53,7 +57,28 @@ function BillCard() {
 				You will save <i className="fas fa-rupee-sign fa-1x"></i>
 				{totaldiscount} on this order
 			</p>
-			<button className="btn btn-primary card__btn">Place Order</button>
+			{pathname === "/orderSummary" && (
+				<div>
+					<h2>Address Details</h2>
+					<div className="address__details">
+						<p>{deliveryAddress?.name}</p>
+						<p>{deliveryAddress?.area}</p>
+						<p>{deliveryAddress?.locality}</p>
+						<p>
+							{deliveryAddress?.city} , {deliveryAddress?.pincode} ,
+							{deliveryAddress?.state}
+						</p>
+						<p>{deliveryAddress?.mobile}</p>
+						<p>{deliveryAddress?.alternatePhoneNumber}</p>
+					</div>
+				</div>
+			)}
+			<button
+				className="btn btn-primary card__btn"
+				onClick={() => navigate("/checkout")}
+			>
+				Place Order
+			</button>
 		</div>
 	);
 }
