@@ -19,7 +19,7 @@ export const users = [
 				name: "Prathmesh",
 				mobile: "9552632234",
 				area: "Pune 315 nicetown hill life is good",
-				locality: "",
+				locality: "Near Antila vila opposite vice city",
 				pincode: "410052",
 				city: "Pune",
 				state: "Maharashtra",

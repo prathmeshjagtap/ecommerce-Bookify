@@ -1,4 +1,4 @@
-import { createContext, useContext, useReducer } from "react";
+import { createContext, useContext, useReducer, useState } from "react";
 import { userReducer } from "../reducer";
 
 const userContext = createContext(null);
@@ -10,9 +10,11 @@ function UserProvider({ children }) {
 		currentuser: null,
 		address: [],
 	});
-
+	const [deliveryAddress, setDeliveryAddress] = useState("");
 	return (
-		<userContext.Provider value={{ userState, userDispatch }}>
+		<userContext.Provider
+			value={{ userState, userDispatch, deliveryAddress, setDeliveryAddress }}
+		>
 			{children}
 		</userContext.Provider>
 	);

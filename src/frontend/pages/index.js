@@ -8,3 +8,5 @@ export { SingleProduct } from "./singleProduct/SingleProduct";
 export { Profile } from "./profile/Profile";
 export { Address } from "./profile/address/Address";
 export { User } from "./profile/User";
+export { Checkout } from "./checkout/Checkout";
+export { OrderSummary } from "./orderSummary/OrderSummary";

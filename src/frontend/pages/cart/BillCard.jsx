@@ -1,9 +1,19 @@
 import React from "react";
-import { useCartContext } from "../../contexts";
+import { useAuthContext, useCartContext, useUserContext } from "../../contexts";
 import "./cart.css";
+import { useNavigate, useLocation } from "react-router-dom";
+import { toast } from "react-toastify";
+import { toastStyle } from "../../components";
+import { clearCart, loadScript } from "../../helpers";
 
 function BillCard() {
-	const { cart } = useCartContext();
+	const { cart, setCart } = useCartContext();
+	const { deliveryAddress } = useUserContext();
+	const {
+		authState: { token },
+	} = useAuthContext();
+	const navigate = useNavigate();
+	const { pathname } = useLocation();
 	const deliveryCharges = 199;
 	const totalPreviousPrice = cart.reduce(
 		(acc, current) => acc + Number(current.previousPrice) * Number(current.qty),
@@ -15,6 +25,51 @@ function BillCard() {
 	);
 	const totaldiscount = totalPreviousPrice - totalPrice;
 	const totalAmount = totalPrice + deliveryCharges;
+
+	async function displayRazorpay(e) {
+		e.preventDefault();
+		const response = await loadScript(
+			"https://checkout.razorpay.com/v1/checkout.js"
+		);
+
+		if (!response) {
+			alert("Razorpay SDK failed to load. Are you online?");
+			return;
+		}
+
+		const options = {
+			key: process.env.REACT_APP_RAZORPAY_KEY_ID,
+			currency: "INR",
+			amount: totalAmount * 100,
+			name: "Bookify",
+			description: "Thank you for trusting us",
+			image: "",
+
+			handler: async (response) => {
+				const { razorpay_payment_id } = await response;
+				const orderData = {
+					orderAmount: totalAmount,
+					razorpayId: razorpay_payment_id,
+				};
+				await clearCart(setCart, token);
+				toast.success("Order Placed, Continue Shopping", {
+					position: "top-center",
+					autoClose: 2000,
+				});
+				navigate("/products");
+			},
+			prefill: {
+				contact: "9552632234",
+				email: "prathmeshjagtap405@gmail.com",
+			},
+		};
+
+		const paymentObject = new window.Razorpay(options);
+		paymentObject.on("payment.failed", function (response) {
+			toast.error("Payment Cancelled", toastStyle);
+		});
+		paymentObject.open();
+	}
 
 	return (
 		<div className="cart__bill">
@@ -53,7 +108,34 @@ function BillCard() {
 				You will save <i className="fas fa-rupee-sign fa-1x"></i>
 				{totaldiscount} on this order
 			</p>
-			<button className="btn btn-primary card__btn">Place Order</button>
+			{pathname === "/orderSummary" && (
+				<div>
+					<h2>Address Details</h2>
+					<div className="address__details">
+						<p>{deliveryAddress?.name}</p>
+						<p>{deliveryAddress?.area}</p>
+						<p>{deliveryAddress?.locality}</p>
+						<p>
+							{deliveryAddress?.city} , {deliveryAddress?.pincode} ,
+							{deliveryAddress?.state}
+						</p>
+						<p>{deliveryAddress?.mobile}</p>
+						<p>{deliveryAddress?.alternatePhoneNumber}</p>
+					</div>
+				</div>
+			)}
+			{pathname === "/orderSummary" ? (
+				<button className="btn btn-primary card__btn" onClick={displayRazorpay}>
+					Buy
+				</button>
+			) : (
+				<button
+					className="btn btn-primary card__btn"
+					onClick={() => navigate("/checkout")}
+				>
+					Place Order
+				</button>
+			)}
 		</div>
 	);
 }

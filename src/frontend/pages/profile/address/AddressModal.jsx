@@ -63,6 +63,7 @@ function AddressModal({ isEdit, address, modalOpen, closeModal }) {
 							type="text"
 							name="name"
 							className="modal__input"
+							maxLength="20"
 							value={addressInput?.name}
 							onChange={handleChange}
 							required
@@ -88,6 +89,7 @@ function AddressModal({ isEdit, address, modalOpen, closeModal }) {
 						<input
 							type="text"
 							name="area"
+							maxLength="40"
 							className="modal__input"
 							value={addressInput?.area}
 							onChange={handleChange}
@@ -99,6 +101,7 @@ function AddressModal({ isEdit, address, modalOpen, closeModal }) {
 						<input
 							type="text"
 							name="locality"
+							maxLength="40"
 							placeholder="Enter Locality (Optional)"
 							className="modal__input"
 							value={addressInput?.locality}
@@ -125,6 +128,7 @@ function AddressModal({ isEdit, address, modalOpen, closeModal }) {
 						<input
 							type="text"
 							name="city"
+							maxLength="15"
 							placeholder="Enter City Name"
 							className="modal__input"
 							value={addressInput?.city}

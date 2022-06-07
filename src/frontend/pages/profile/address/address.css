@@ -22,3 +22,30 @@
 	flex-direction: column;
 	justify-content: center;
 }
+.address__card {
+	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+	padding: var(--padding-rem-s);
+	position: relative;
+	border-radius: var(--border-radius-m);
+	width: 35ch;
+	height: 13rem;
+	display: flex;
+	flex-direction: column;
+}
+.address__icons {
+	font-size: 1.2rem;
+	align-items: center;
+	margin-top: var(--margin-rem-s);
+	bottom: 1rem;
+	position: absolute;
+	gap: 2rem;
+}
+.address__icons i {
+	margin: 0 4rem 0 4rem;
+}
+.delete__icon {
+	color: var(--warning-red-color);
+}
+.select__address {
+	margin: var(--margin-rem-s);
+}

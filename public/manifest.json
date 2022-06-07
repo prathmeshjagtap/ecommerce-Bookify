@@ -1,6 +1,7 @@
 {
 	"short_name": "Bookify",
 	"name": "Bookify",
+	"description": "Bookify is an E-commerce website for books. Get all books easily in one place.",
 	"icons": [
 		{
 			"src": "favicon.ico",
