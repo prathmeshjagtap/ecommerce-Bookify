@@ -4,3 +4,5 @@ export { addToCart } from "./addToCart";
 export { deleteFromCart } from "./deleteFromCart";
 export { incrementCartItem } from "./incrementCartItem";
 export { decrementCartItem } from "./decrementCartItem";
+export { clearCart } from "./clearCart";
+export { loadScript } from "./loadScript";

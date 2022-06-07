@@ -43,10 +43,9 @@ function Address() {
 					</button>
 					<div className="address__container">
 						{address.map((location) => (
-							<>
+							<React.Fragment key={location?._id}>
 								{pathname === "/checkout" && (
 									<input
-										key={location?._id}
 										type="radio"
 										name="order-address"
 										checked={location._id === deliveryAddress?._id}
@@ -56,7 +55,7 @@ function Address() {
 										}}
 									/>
 								)}
-								<div className="address__card" key={location?._id}>
+								<div className="address__card">
 									<p>{location?.name}</p>
 									<span>{location?.area}</span>
 									<span>{location?.locality}</span>
@@ -96,7 +95,7 @@ function Address() {
 										</div>
 									)}
 								</div>
-							</>
+							</React.Fragment>
 						))}
 					</div>
 				</div>
